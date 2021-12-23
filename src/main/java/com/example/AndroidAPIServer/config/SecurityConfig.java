@@ -23,17 +23,20 @@ configure
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
                 .antMatchers(
-                        "/h2-console/**"
+                        "/h2-console/**", "/api/user/**"
                 ).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+                .anyRequest().authenticated();
+
+        http
+                .csrf().disable();
+
+        http
+                .headers().frameOptions().disable();
     }
 
 
