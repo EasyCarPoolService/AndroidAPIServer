@@ -41,9 +41,11 @@ public class JoinService implements UserDetailsService {
     }
 
     public Long save(JoinDto joinDto) {
+        // password는 암호화를 거친후 저장
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         joinDto.setPassword(encoder.encode(joinDto.getPassword()));
 
+        //dto내 String role이 "admin"이면 User Entity의 role = ROLE_ADMIN
         if(joinDto.getRole().equals("admin")){
             return userRepository.save(joinDto.toAdminEntity()).getId();
         }

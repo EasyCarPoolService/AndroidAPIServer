@@ -6,13 +6,19 @@ import jdk.jfr.Enabled;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-@Enabled
+@Entity
 @NoArgsConstructor
 @Getter
-public class User extends BaseTimeEntity {
+public class User extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +31,9 @@ public class User extends BaseTimeEntity {
     private String email;
 
     @Column(nullable = false)
+    private String nickname;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
@@ -33,25 +42,26 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String gender;
 
-    @Column(nullable = false)
-    private String picture;
-
     //Enumerated -> JPA로 데이터베이스 생성시 Enum값을 어떤 형태로 저장할지 결정(default : int)
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public User(String name, String email, String password, String birth, String gender, String picture, Role role){
+    public User(String name, String email, String nickname, String password, String birth, String gender, Role role){
         this.name = name;
+        this.nickname = nickname;
         this.email = email;
-        this.picture = picture;
+        this.password = password;
+        this.birth = birth;
+        this.gender = gender;
+        //this.picture = picture;
         this.role = role;
     }
 
-    public User update(String name, String picture) {
+    public User update(String name) {
         this.name = name;
-        this.picture = picture;
+
 
         return this;
     }
