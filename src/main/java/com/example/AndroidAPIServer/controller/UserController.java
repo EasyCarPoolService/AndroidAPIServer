@@ -1,8 +1,11 @@
 package com.example.AndroidAPIServer.controller;
 
-import com.example.AndroidAPIServer.dto.JoinDto;
-import com.example.AndroidAPIServer.service.join.JoinService;
+import com.example.AndroidAPIServer.dto.user.JoinDto;
+import com.example.AndroidAPIServer.dto.user.TestDto;
+import com.example.AndroidAPIServer.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
-    private final JoinService joinService;
+    private final UserService userService;
 
     @PostMapping("/signup")
-    public Long signup(@RequestBody JoinDto joinDto) {
-        System.out.println("access successfully");
-        System.out.println(joinDto.getNickname());
+    public ResponseEntity<String> signup(@RequestBody JoinDto joinDto){
 
-        return joinService.save(joinDto);
+        String responseMessage;
+
+        try{
+            responseMessage = userService.signup(joinDto);
+        }catch(Exception e){
+            responseMessage = e.getMessage();
+        }
+        return ResponseEntity.ok(responseMessage);
+    }
+
+    @PostMapping("/test")
+    @PreAuthorize("hasAnyRole('USER')")
+    public ResponseEntity<String> test(@RequestBody TestDto testDto){
+        System.out.println(testDto.getMessage());
+
+        return ResponseEntity.ok("Success");
     }
 
 }

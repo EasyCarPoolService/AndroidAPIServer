@@ -1,8 +1,9 @@
-package com.example.AndroidAPIServer.dto;
+package com.example.AndroidAPIServer.dto.user;
 
 
 import com.example.AndroidAPIServer.domain.user.Role;
-import com.example.AndroidAPIServer.domain.user.User;
+import com.example.AndroidAPIServer.domain.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 public class JoinDto {
     private String name;
     private String email;
@@ -19,19 +22,9 @@ public class JoinDto {
     private String birth;
     private String gender;
     //private String picture;
+    private boolean activated;
     private String role;
 
-    @Builder
-    public JoinDto(String name, String email, String nickname, String password, String birth, String gender, String role){
-        this.name = name;
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.birth = birth;
-        this.gender = gender;
-        //this.picture = picture;
-        this.role = role;
-    }
 
     public User toUserEntity(){
         return User.builder()
@@ -42,6 +35,7 @@ public class JoinDto {
                 .nickname(nickname)
                 .gender(gender)
                 .role(Role.USER)
+                .activated(true)
                 .build();
     }
     public User toAdminEntity(){
@@ -51,6 +45,7 @@ public class JoinDto {
                 .password(password)
                 .birth(birth)
                 .gender(gender)
+                .activated(activated)
                 .role(Role.ADMIN)
                 .build();
     }
