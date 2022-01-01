@@ -1,23 +1,53 @@
 package com.example.AndroidAPIServer.controller;
 
-import com.example.AndroidAPIServer.dto.JoinDto;
-import com.example.AndroidAPIServer.service.join.JoinService;
+import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
+import com.example.AndroidAPIServer.dto.user.JoinDto;
+import com.example.AndroidAPIServer.dto.user.TestDto;
+import com.example.AndroidAPIServer.jwt.TokenProvider;
+import com.example.AndroidAPIServer.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping(value = "/api/user")
 public class UserController {
-    private final JoinService joinService;
+    private final UserService userService;
 
-    @PostMapping("/api/user/signup")
-    public Long signup(@RequestBody JoinDto joinDto) {
-        System.out.println("access successfully");
-        System.out.println(joinDto.getNickname());
+    private final TokenProvider tokenProvider;
 
-        return joinService.save(joinDto);
+    @PostMapping("/signup")
+    public ResponseEntity<String> signup(@RequestBody JoinDto joinDto){
+
+        String responseMessage;
+
+        try{
+            responseMessage = userService.signup(joinDto);
+        }catch(Exception e){
+            responseMessage = e.getMessage();
+        }
+        return ResponseEntity.ok(responseMessage);
+    }
+
+    @PostMapping("/test")
+    @PreAuthorize("hasAnyRole('USER')")
+    public ResponseEntity<String> test(@RequestBody TestDto testDto){
+        System.out.println(testDto.getMessage());
+
+        return ResponseEntity.ok("Success");
+    }
+
+    //@RequestMapping(method= RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/getUserData")
+    public AndroidLocalUserDto getUserData(@RequestHeader("Authorization") String value) {
+        System.out.println("Authorization=" + value);
+        return userService.getUserData(value);
     }
 
 }
