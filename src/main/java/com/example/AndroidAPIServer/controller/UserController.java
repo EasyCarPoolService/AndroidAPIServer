@@ -1,21 +1,25 @@
 package com.example.AndroidAPIServer.controller;
 
+import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.dto.user.JoinDto;
 import com.example.AndroidAPIServer.dto.user.TestDto;
+import com.example.AndroidAPIServer.jwt.TokenProvider;
 import com.example.AndroidAPIServer.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
     private final UserService userService;
+
+    private final TokenProvider tokenProvider;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody JoinDto joinDto){
@@ -36,6 +40,14 @@ public class UserController {
         System.out.println(testDto.getMessage());
 
         return ResponseEntity.ok("Success");
+    }
+
+    //@RequestMapping(method= RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/getUserData")
+    public AndroidLocalUserDto getUserData(@RequestHeader("Authorization") String value) {
+        System.out.println("Authorization=" + value);
+        return userService.getUserData(value);
     }
 
 }

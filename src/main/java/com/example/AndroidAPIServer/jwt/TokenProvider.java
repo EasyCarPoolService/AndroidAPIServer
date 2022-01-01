@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
@@ -50,6 +52,21 @@ public class TokenProvider implements InitializingBean {
 
     //===============================================================================
 
+    public String resolveToken(String token){
+        return Jwts.parser()
+                .setSigningKey(key) // (3)
+                .parseClaimsJws(token) // (4)
+                .getBody().getSubject();
+    }
+
+
+
+
+
+
+
+    //===============================================================================
+
     public String createToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -57,6 +74,7 @@ public class TokenProvider implements InitializingBean {
 
         long now = (new Date()).getTime();
         Date validity = new Date(now + this.tokenValidityInMilliseconds);   //application.yml에서 설정했던 만료 기간을 이용해 토큰 만료기간 설정
+
 
         //토큰 생성 및 리턴
         return Jwts.builder()

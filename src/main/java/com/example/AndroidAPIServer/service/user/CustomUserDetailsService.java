@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole().getKey()));   //user 권한 -> Collection형태로 생성
 
-        return new org.springframework.security.core.userdetails.User(user.getName(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 authorities);
     }
