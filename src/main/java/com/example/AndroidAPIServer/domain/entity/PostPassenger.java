@@ -1,8 +1,6 @@
 package com.example.AndroidAPIServer.domain.entity;
 
-
 import com.example.AndroidAPIServer.domain.BaseTimeEntity;
-import com.example.AndroidAPIServer.domain.user.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,8 +11,7 @@ import javax.persistence.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class Board extends BaseTimeEntity {
-
+public class PostPassenger extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
