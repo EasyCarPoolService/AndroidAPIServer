@@ -1,14 +1,14 @@
 package com.example.AndroidAPIServer.controller;
 
 
+import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
 import com.example.AndroidAPIServer.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,6 +21,13 @@ public class PostController {
         String message = postService.savePassengerPost(dto);
         return ResponseEntity.ok(message);
     }
+
+    @GetMapping("/passenger/getPost")
+    public List<PostPassenger> getPassengerPost(){
+        return postService.getPassengerPost();
+    }
+
+
 
 
 
