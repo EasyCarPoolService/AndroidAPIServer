@@ -32,6 +32,9 @@ public class PostPassenger extends BaseTimeEntity {
     private String destination;
 
     @Column(nullable = false)
+    private String departureDate;
+
+    @Column(nullable = false)
     private String departureTime;
 
     private String gift;

@@ -60,6 +60,7 @@ public class UserService {
             AndroidLocalUserDto dto = AndroidLocalUserDto.builder()
                     .nickname(user.getNickname())
                     .email(user.getEmail())
+                    .gender(user.getGender())
                     .token(jwt)
                     .build();
 
