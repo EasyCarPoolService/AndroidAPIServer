@@ -83,6 +83,7 @@ public class UserService {
                     .email(user.getEmail())
                     .nickname(user.getNickname())
                     .token(token)
+                    .gender(user.getGender())
                     .build();
         }else{
             return null;
