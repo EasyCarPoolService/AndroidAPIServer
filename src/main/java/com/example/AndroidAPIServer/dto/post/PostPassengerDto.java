@@ -21,7 +21,7 @@ public class PostPassengerDto {
     private String destination;
     private String departureDate;
     private String departureTime;
-    private List<String> gift;
+    private String gift;
     private String message;
 
     public PostPassenger toEntity(){
@@ -33,18 +33,9 @@ public class PostPassengerDto {
                 .destination(destination)
                 .departureDate(departureDate)
                 .departureTime(departureTime)
-                .gift(giftToString())
+                .gift(gift)
                 .message(message)
                 .build();
-    }
-
-    // 추후 String으로 변환하는 과정을 수행하지 않고 테이블을 생성하는 것으로 수정할것
-    private String giftToString(){
-        String result="";
-        for (int i = 0; i < gift.size(); i++) {
-            result = result +", "+ gift.get(i);
-        }
-        return result;
     }
 
 
