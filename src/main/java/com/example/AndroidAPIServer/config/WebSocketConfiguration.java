@@ -12,7 +12,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
 
-    private static final String URL = "http://000.000.00.000:80";
+    private static final String URL = "http://172.20.10.4:8080";
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {

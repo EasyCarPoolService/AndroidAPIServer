@@ -2,41 +2,34 @@ package com.example.AndroidAPIServer.controller;
 
 
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
-import com.example.AndroidAPIServer.repository.RoomRepository;
+import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
+import com.example.AndroidAPIServer.service.ChatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.val;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/room")
+@RequestMapping(value = "/api/chat")
 public class StompRoomController {
 
-    private final RoomRepository roomRepository;
+    private final ChatService chatService;
 
-
-    @PostMapping("/create")
-    public List<RoomDto> createRoom(@RequestBody RoomDto nameOfRoom){
-        List<RoomDto> roomList = roomRepository.createRoomDto(nameOfRoom.getName());
-
-        return roomList;
+    @PostMapping("/createroom")
+    public RoomDto createRoom(@RequestBody RoomDto roomDto){
+        roomDto.setRoomId(chatService.createRoomDto(roomDto));
+        return roomDto;
     }
 
     @PostMapping("/getAllRoom")
-    public List<RoomDto> getAllRoom(@RequestBody RoomDto dtoFromAndroid){
-        List<RoomDto> roomList = roomRepository.findAllRooms();
-        return roomList;
+    public List<RoomDto> getAllRoom(@RequestBody AndroidLocalUserDto userDto){
+
+        return chatService.findAllRooms(userDto.getEmail());
     }
 
-    @PostMapping("/findRoomIdByName")
-    public RoomDto findRoomIdByName(@RequestBody RoomDto dtoFromAndroid){
-        RoomDto room = roomRepository.findRoomByName(dtoFromAndroid.getName());
-        return room;
-    }
 }
 
