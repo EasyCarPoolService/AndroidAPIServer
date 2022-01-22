@@ -62,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()//접근 제한 설정
+                .antMatchers("mobileServer/**").permitAll()
                 .antMatchers("/api//auth/authenticate").permitAll()
                 .antMatchers("/api/user/signup").permitAll()
                 .anyRequest().authenticated()  //위 세 url 이외에는 모두 인증이 필요함

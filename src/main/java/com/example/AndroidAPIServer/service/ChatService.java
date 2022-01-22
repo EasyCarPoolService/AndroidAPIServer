@@ -30,7 +30,7 @@ public class ChatService {
     }
 
     public List<RoomDto> findAllRooms(String userEmail){
-        
+
         return chatRoomRepository.findChatRoomByEmail(userEmail).stream()
                 .map(RoomDto::new)
                 .collect(Collectors.toList());
