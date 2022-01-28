@@ -1,6 +1,7 @@
 package com.example.AndroidAPIServer.controller;
 
 
+import com.example.AndroidAPIServer.dto.chat.ChatMessageDto;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.ChatService;
@@ -29,6 +30,11 @@ public class StompRoomController {
     public List<RoomDto> getAllRoom(@RequestBody AndroidLocalUserDto userDto){
 
         return chatService.findAllRooms(userDto.getEmail());
+    }
+
+    @PostMapping("/findMessageByRoomId")
+    public List<ChatMessageDto> enterRoom(@RequestBody RoomDto roomDto){
+        return chatService.findMessageByRoomId(roomDto.getRoomId());
     }
 
 }
