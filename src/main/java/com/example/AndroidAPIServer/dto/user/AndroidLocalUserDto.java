@@ -14,4 +14,5 @@ public class AndroidLocalUserDto {
     private String email;
     private String token;
     private String gender;
+    private Boolean driverAuthentication;
 }

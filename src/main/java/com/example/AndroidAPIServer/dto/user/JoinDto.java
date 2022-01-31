@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-//public User(String name, String email, String password, String birth, String gender, String picture, Role role){
 
 @Getter
 @Setter
@@ -21,6 +20,7 @@ public class JoinDto {
     private String password;
     private String birth;
     private String gender;
+    private Boolean driverAuthentication;
     //private String picture;
     private boolean activated;
     private String role;
@@ -34,6 +34,7 @@ public class JoinDto {
                 .birth(birth)
                 .nickname(nickname)
                 .gender(gender)
+                .driverAuthentication(driverAuthentication)
                 .role(Role.USER)
                 .activated(true)
                 .build();
@@ -45,6 +46,7 @@ public class JoinDto {
                 .password(password)
                 .birth(birth)
                 .gender(gender)
+                .driverAuthentication(true) //관리자의 경우 default = true
                 .activated(activated)
                 .role(Role.ADMIN)
                 .build();

@@ -8,6 +8,7 @@ import com.example.AndroidAPIServer.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,18 +21,19 @@ public class StompRoomController {
 
     private final ChatService chatService;
 
+    @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/createroom")
     public RoomDto createRoom(@RequestBody RoomDto roomDto){
         roomDto.setRoomId(chatService.createRoomDto(roomDto));
         return roomDto;
     }
-
+    @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/getAllRoom")
     public List<RoomDto> getAllRoom(@RequestBody AndroidLocalUserDto userDto){
 
         return chatService.findAllRooms(userDto.getEmail());
     }
-
+    @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/findMessageByRoomId")
     public List<ChatMessageDto> enterRoom(@RequestBody RoomDto roomDto){
         return chatService.findMessageByRoomId(roomDto.getRoomId());

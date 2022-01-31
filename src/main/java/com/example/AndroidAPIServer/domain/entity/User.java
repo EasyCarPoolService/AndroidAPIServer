@@ -37,6 +37,9 @@ public class User extends BaseTimeEntity{
     @Column(nullable = false)
     private String gender;
 
+    @Column(nullable = false)
+    private Boolean driverAuthentication;
+
     @Column(name = "activated")
     private boolean activated;
 

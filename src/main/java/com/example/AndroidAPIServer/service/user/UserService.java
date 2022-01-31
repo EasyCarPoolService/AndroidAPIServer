@@ -62,6 +62,7 @@ public class UserService {
                     .email(user.getEmail())
                     .gender(user.getGender())
                     .token(jwt)
+                    .driverAuthentication(user.getDriverAuthentication())
                     .build();
 
             return new ResponseEntity<>(dto, httpHeaders, HttpStatus.OK);
@@ -71,6 +72,8 @@ public class UserService {
         }
     }
 
+
+    //token 인중후 응답데이터로 유저 정보 전송 -> Android Client 에서 LocalUserData SingleTon패턴 적용
     @Transactional
     public AndroidLocalUserDto getUserData(String value){
 
@@ -85,6 +88,7 @@ public class UserService {
                     .nickname(user.getNickname())
                     .token(token)
                     .gender(user.getGender())
+                    .driverAuthentication(user.getDriverAuthentication())
                     .build();
         }else{
             return null;
