@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.security.Provider;
 
 @RequiredArgsConstructor
 @RestController
@@ -115,49 +116,20 @@ public class UserController {
         return userService.getUserData(value);
     }
 
-    //check
+    //check   user Table의 driverAuthentication True로 변경 하도록 수정!
     @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/driverAuth")
-    public ResponseEntity<String> driverAuthentication(@RequestParam("idImage")MultipartFile id_image,
-                                                       @RequestParam("carImage")MultipartFile car_image,
-                                                       @RequestParam("testData")Part testData) {
+    public ResponseEntity<String> authDriver(@RequestParam("idImage") MultipartFile id_image,
+                                                       @RequestParam("carImage") MultipartFile car_image,
+                                                       @RequestParam("carNumber") String name,
+                                                       @RequestParam("manufacturer") String email,
+                                                       @RequestParam("model") String nickname) {
+
+
+        // service결과에 따른 출력 메시지 작성하도록 변경!
+        userService.authDriver(id_image, car_image, name, email, nickname);
 
         String responseMessage = "ok";
-
-
-        System.out.println(id_image.getOriginalFilename());
-        System.out.println(car_image.getOriginalFilename());
-
-        System.out.println(testData.name());
-
-
-
-        /*try {
-            String origFilename = files.getOriginalFilename();
-            String filename = origFilename.toString();
-
-            //savePath -> 현재 프로젝트 폴더내 존재하는 files폴더의 경로
-            String savePath = System.getProperty("user.dir") + "/files";
-
-            // /files폴더가 존재하지 않으면 생성
-            if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-
-            //   현재프로젝트경로/files/filename   ->  filename == (androdi)fileName 변수
-            String filePath = savePath + "/" + filename;
-
-            // 파일 저장
-            files.transferTo(new File(filePath));
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }*/
         return ResponseEntity.ok(responseMessage);
     }
 
