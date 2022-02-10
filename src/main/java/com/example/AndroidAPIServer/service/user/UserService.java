@@ -96,6 +96,7 @@ public class UserService {
                     .token(token)
                     .gender(user.getGender())
                     .driverAuthentication(user.getDriverAuthentication())
+                    .fcmToken(user.getFcmToken())
                     .build();
         }else{
             return null;
