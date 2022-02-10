@@ -46,7 +46,8 @@ public class UserController {
             @RequestParam("nickname") String nickname,
             @RequestParam("password") String password,
             @RequestParam("birth") String birth,
-            @RequestParam("gender") String gender
+            @RequestParam("gender") String gender,
+            @RequestParam("fcmToken") String fcmToken
     ){
 
         String responseMessage;
@@ -60,6 +61,7 @@ public class UserController {
                 .birth(birth)
                 .gender(gender)
                 .driverAuthentication(false)
+                .fcmToken(fcmToken)
                 .build();
 
         try{

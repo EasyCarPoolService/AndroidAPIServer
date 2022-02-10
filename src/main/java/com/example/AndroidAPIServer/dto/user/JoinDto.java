@@ -21,6 +21,7 @@ public class JoinDto {
     private String birth;
     private String gender;
     private Boolean driverAuthentication;
+    private String fcmToken;
     //private String picture;
     private boolean activated;
     private String role;
@@ -39,6 +40,7 @@ public class JoinDto {
                 .activated(true)
                 .build();
     }
+
     public User toAdminEntity(){
         return User.builder()
                 .name(name)
@@ -51,6 +53,5 @@ public class JoinDto {
                 .role(Role.ADMIN)
                 .build();
     }
-
 
 }

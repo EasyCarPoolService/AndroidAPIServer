@@ -40,6 +40,9 @@ public class User extends BaseTimeEntity{
     @Column(nullable = false)
     private Boolean driverAuthentication;
 
+    @Column(nullable = false)
+    private String fcmToken;
+
     @Column(name = "activated")
     private boolean activated;
 

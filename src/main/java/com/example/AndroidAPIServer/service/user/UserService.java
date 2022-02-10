@@ -61,12 +61,15 @@ public class UserService {
             httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
             User user = userRepository.findUserByEmail(loginDto.getEmail()).get();
+
+            //check
             AndroidLocalUserDto dto = AndroidLocalUserDto.builder()
                     .nickname(user.getNickname())
                     .email(user.getEmail())
                     .gender(user.getGender())
                     .token(jwt)
                     .driverAuthentication(user.getDriverAuthentication())
+                    .fcmToken(user.getFcmToken())
                     .build();
 
             return new ResponseEntity<>(dto, httpHeaders, HttpStatus.OK);
@@ -112,7 +115,6 @@ public class UserService {
 
             String car_originalFileName = car_image.getOriginalFilename();
             String car_fileName = car_originalFileName.toString();
-
 
             //savePath -> 현재 프로젝트 폴더내 존재하는 files폴더의 경로
             String id_savePath = System.getProperty("user.dir") + "/userId";
