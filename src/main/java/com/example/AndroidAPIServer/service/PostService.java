@@ -36,5 +36,4 @@ public class PostService {
         return postPassengerRepository.findAll();
     }
 
-
 }

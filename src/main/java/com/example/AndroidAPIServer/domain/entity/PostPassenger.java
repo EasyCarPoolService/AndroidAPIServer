@@ -37,6 +37,9 @@ public class PostPassenger extends BaseTimeEntity {
     @Column(nullable = false)
     private String departureTime;
 
+    @Column(nullable = false)
+    private String fcmToken;
+
     private String gift;
 
     private String message;

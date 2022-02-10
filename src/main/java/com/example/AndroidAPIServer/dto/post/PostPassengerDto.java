@@ -23,6 +23,8 @@ public class PostPassengerDto {
     private String departureTime;
     private String gift;
     private String message;
+    private String fcmToken;
+
 
     public PostPassenger toEntity(){
         return PostPassenger.builder()
@@ -35,8 +37,8 @@ public class PostPassengerDto {
                 .departureTime(departureTime)
                 .gift(gift)
                 .message(message)
+                .fcmToken(fcmToken)
                 .build();
     }
-
 
 }
