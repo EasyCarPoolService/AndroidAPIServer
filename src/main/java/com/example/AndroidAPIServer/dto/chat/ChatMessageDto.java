@@ -17,6 +17,7 @@ public class ChatMessageDto {
     private String roomId;
     private String writer;
     private String message;
+    private String fcmToken;
     private String time;
 
     public void setCurrentTime(){

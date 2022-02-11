@@ -18,6 +18,8 @@ public class RoomDto {
     private String passenger;
     private String driverNickname;
     private String passengerNickname;
+    private String driverFcmToken;
+    private String passengerFcmToken;
 
     private Set<WebSocketSession> sessions = new HashSet<>();
     //WebSocketSession은 Spring에서 Websocket Connection이 맺어진 세션
@@ -31,15 +33,19 @@ public class RoomDto {
                 .passenger(passenger)
                 .driverNickname(driverNickname)
                 .passengerNickname(passengerNickname)
+                .driverFcmToken(driverFcmToken)
+                .passengerFcmToken(passengerFcmToken)
                 .build();
     }
 
     @Builder
-    public RoomDto(String driver, String passenger, String driverNickname, String passengerNickname){
+    public RoomDto(String driver, String passenger, String driverNickname, String passengerNickname, String driverFcmToken, String passengerFcmToken){
         this.driver = driver;
         this.passenger = passenger;
         this.driverNickname = driverNickname;
         this.passengerNickname = passengerNickname;
+        this.driverFcmToken = driverFcmToken;
+        this.passengerFcmToken = passengerFcmToken;
     }
 
     public RoomDto(ChatRoomEntity entity){
@@ -48,6 +54,8 @@ public class RoomDto {
         this.passenger = entity.getPassenger();
         this.driverNickname = entity.getDriverNickname();
         this.passengerNickname = entity.getPassengerNickname();
+        this.driverFcmToken = entity.getDriverFcmToken();
+        this.passengerFcmToken = entity.getPassengerFcmToken();
     }
 
 }

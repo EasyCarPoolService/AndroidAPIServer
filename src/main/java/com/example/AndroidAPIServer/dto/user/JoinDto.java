@@ -36,6 +36,7 @@ public class JoinDto {
                 .nickname(nickname)
                 .gender(gender)
                 .driverAuthentication(driverAuthentication)
+                .fcmToken(fcmToken)
                 .role(Role.USER)
                 .activated(true)
                 .build();

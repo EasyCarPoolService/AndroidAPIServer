@@ -28,6 +28,4 @@ public class ChatMessageEntity {
     @Column(nullable = false)
     private String time;
 
-
-
 }

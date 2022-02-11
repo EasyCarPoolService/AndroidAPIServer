@@ -52,6 +52,9 @@ public class UserController {
 
         String responseMessage;
 
+        System.out.println("fcmToken is "+fcmToken.toString());
+
+
         //join Dto구성 코드 작성
         JoinDto joinDto = JoinDto.builder()
                 .name(name)

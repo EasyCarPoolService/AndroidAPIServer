@@ -30,3 +30,8 @@ jwt:
 logging:
   level:
     me.silvernine: DEBUG
+
+
+val:
+  adminsdk : "easycarpoolapp"
+

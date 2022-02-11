@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "1.9"
 
 configurations {
 	compileOnly {
@@ -24,6 +24,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'com.google.firebase:firebase-admin:6.8.1'	//firebase
+	implementation 'com.squareup.okhttp3:okhttp:4.9.1'	//okhttpClient
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -38,3 +41,4 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+targetCompatibility = JavaVersion.VERSION_1_9

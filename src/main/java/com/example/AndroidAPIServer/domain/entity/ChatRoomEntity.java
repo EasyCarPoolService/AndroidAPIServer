@@ -31,4 +31,11 @@ public class ChatRoomEntity {
 
     @Column(nullable = false)
     private String driverNickname;
+
+    @Column(nullable = false)
+    private String driverFcmToken;
+
+    @Column(nullable = false)
+    private String passengerFcmToken;
+
 }

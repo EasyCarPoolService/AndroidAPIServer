@@ -23,6 +23,7 @@ public class ChatService {
     private final ChatRoomRepository chatRoomRepository;
     private final ChatMessageRepository chatMessageRepository;
     private final SimpMessagingTemplate template;
+    private final FCMService fcmService;
 
     @PostConstruct  //의존성 주입이 이루어진후 초기화 수
     private void init(){
@@ -43,6 +44,14 @@ public class ChatService {
         newMessage.setCurrentTime();
         chatMessageRepository.save(newMessage.toEntity()); //채팅 메시지 저장
         template.convertAndSend("/sub/chat/room"+newMessage.getRoomId(), newMessage);
+
+        try{
+            fcmService.sendMessageTo(newMessage.getFcmToken(), newMessage.getWriter(), newMessage.getMessage());
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+
+        //firebase code
     }
 
     public List<ChatMessageDto> findMessageByRoomId(String roomId){
