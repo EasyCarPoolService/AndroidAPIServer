@@ -38,5 +38,25 @@ public class ImageController {
         headers.add("Content-Type", contentType);
 
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-    }
+    }//return profile image
+
+
+
+    @GetMapping("/car")
+    public ResponseEntity<FileSystemResource> getCarImage(@RequestParam String email) throws IOException {
+
+        String savePath = System.getProperty("user.dir") + "/car/"+email+"_car.jpg";
+
+        Path path = Paths.get(savePath);
+
+        String contentType = Files.probeContentType(path);
+
+        FileSystemResource resource = new FileSystemResource(savePath);
+
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", contentType);
+
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+    }   // return car image
 }

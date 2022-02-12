@@ -1,19 +1,19 @@
 package com.example.AndroidAPIServer.dto.post;
 
 
+import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
-public class PostPassengerDto {
+public class PostDriverDto {
+
     private String type;
     private String email;
     private String nickname;
@@ -27,8 +27,8 @@ public class PostPassengerDto {
     private String fcmToken;
 
 
-    public PostPassenger toEntity(){
-        return PostPassenger.builder()
+    public PostDriver toEntity(){
+        return PostDriver.builder()
                 .type(type)
                 .email(email)
                 .nickname(nickname)
@@ -41,6 +41,6 @@ public class PostPassengerDto {
                 .message(message)
                 .fcmToken(fcmToken)
                 .build();
-    }
+    }//toEntity
 
 }

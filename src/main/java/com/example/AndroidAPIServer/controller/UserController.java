@@ -126,13 +126,13 @@ public class UserController {
     @PostMapping("/driverAuth")
     public ResponseEntity<String> authDriver(@RequestParam("idImage") MultipartFile id_image,
                                                        @RequestParam("carImage") MultipartFile car_image,
-                                                       @RequestParam("carNumber") String name,
-                                                       @RequestParam("manufacturer") String email,
-                                                       @RequestParam("model") String nickname) {
+                                                       @RequestParam("carNumber") String carNumber,
+                                                       @RequestParam("manufacturer") String manufacturer,
+                                                       @RequestParam("model") String model) {
 
 
-        // service결과에 따른 출력 메시지 작성하도록 변경!
-        userService.authDriver(id_image, car_image, name, email, nickname);
+        // service결과에 따른 출력 메시지 작성하도록 변경! -> Transaction 수정 가능 하도록 변경 필요
+        userService.authDriver(id_image, car_image, carNumber, manufacturer, model);
 
         String responseMessage = "ok";
         return ResponseEntity.ok(responseMessage);

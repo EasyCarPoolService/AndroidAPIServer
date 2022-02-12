@@ -1,5 +1,6 @@
 package com.example.AndroidAPIServer.domain.entity;
 
+
 import com.example.AndroidAPIServer.domain.BaseTimeEntity;
 import lombok.*;
 
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class PostPassenger extends BaseTimeEntity {
+public class PostDriver extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

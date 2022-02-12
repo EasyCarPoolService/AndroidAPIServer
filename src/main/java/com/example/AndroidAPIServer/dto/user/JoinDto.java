@@ -26,7 +26,7 @@ public class JoinDto {
     private boolean activated;
     private String role;
 
-
+    //check driverAuthentication -> 임시로 true
     public User toUserEntity(){
         return User.builder()
                 .name(name)
@@ -35,7 +35,8 @@ public class JoinDto {
                 .birth(birth)
                 .nickname(nickname)
                 .gender(gender)
-                .driverAuthentication(driverAuthentication)
+                //.driverAuthentication(driverAuthentication)
+                .driverAuthentication(true)
                 .fcmToken(fcmToken)
                 .role(Role.USER)
                 .activated(true)

@@ -103,12 +103,14 @@ public class UserService {
         }
     }//getUserData
 
+
+    //check -> store car_info
     @Transactional
     public void authDriver(MultipartFile id_image,
                            MultipartFile car_image,
-                           String name,
-                           String email,
-                           String nickname){
+                           String carNumber,
+                           String manufacturer,
+                           String model){
 
         try {
             String id_originalFileName = id_image.getOriginalFilename();
