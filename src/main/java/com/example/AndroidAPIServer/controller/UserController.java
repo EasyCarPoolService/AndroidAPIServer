@@ -34,7 +34,7 @@ public class UserController {
     //순서 회원가입 진행완료 후 이어서 사진 저장하도록 설정
     @PostMapping("/signup")
     public ResponseEntity<String> signup(
-            @RequestParam("profile_image") MultipartFile profile_image,
+            @RequestParam(value = "profile_image", required = false) MultipartFile profile_image,
             @RequestParam("name") String name,
             @RequestParam("email") String email,
             @RequestParam("nickname") String nickname,
