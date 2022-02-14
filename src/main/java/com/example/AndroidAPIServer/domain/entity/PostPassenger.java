@@ -12,10 +12,8 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 public class PostPassenger extends BaseTimeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    @Id
     @Column(nullable = false)
     private String type;
 

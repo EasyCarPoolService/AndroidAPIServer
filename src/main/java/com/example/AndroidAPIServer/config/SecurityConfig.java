@@ -66,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api//auth/authenticate").permitAll()
                 .antMatchers("/api/user/signup").permitAll()
                 .antMatchers("/api/image/**").permitAll()
+                .antMatchers("/api/test/**").permitAll()
                 .anyRequest().authenticated()  //위 세 url 이외에는 모두 인증이 필요함
 
                 //앞서 구현한 토큰 인증을 위한 JwtSecurityConfig 적용

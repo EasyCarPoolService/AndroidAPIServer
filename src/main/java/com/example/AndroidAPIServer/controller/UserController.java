@@ -2,21 +2,16 @@ package com.example.AndroidAPIServer.controller;
 
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.dto.user.JoinDto;
-import com.example.AndroidAPIServer.dto.user.TestDto;
+import com.example.AndroidAPIServer.test.TestDto;
 import com.example.AndroidAPIServer.jwt.TokenProvider;
 import com.example.AndroidAPIServer.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.codec.multipart.Part;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.security.Provider;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,7 +30,6 @@ public class UserController {
     @Part("birth") birth: RequestBody?,
     @Part("gender") gender: RequestBody?,
     @Part("driverAuthentication") driverAuthentication: RequestBody?,*/
-
 
     //순서 회원가입 진행완료 후 이어서 사진 저장하도록 설정
     @PostMapping("/signup")
