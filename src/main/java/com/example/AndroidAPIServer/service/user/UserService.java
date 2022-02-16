@@ -42,7 +42,7 @@ public class UserService {
         joinDto.setPassword(encoder.encode(joinDto.getPassword()));
 
 
-        return userRepository.save(joinDto.toUserEntity()).getId().toString();
+        return userRepository.save(joinDto.toUserEntity()).getEmail().toString();
     }//signup
 
     @Transactional
@@ -153,6 +153,18 @@ public class UserService {
         }
 
     }//authDriver
+
+    public AndroidLocalUserDto getDriverAuth(AndroidLocalUserDto androidLocalUserDto) {
+        User user = userRepository.findUserByEmail(androidLocalUserDto.getEmail()).get();
+
+        if(user != null){
+            return AndroidLocalUserDto.builder()
+                    .driverAuthentication(user.getDriverAuthentication())
+                    .build();
+        }else{
+            return null;
+        }
+    }//getDriverAuth()
 
 
 

@@ -132,5 +132,15 @@ public class UserController {
         return ResponseEntity.ok(responseMessage);
     }
 
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/getDriverAuth")
+    public AndroidLocalUserDto getDriverAuth(@RequestBody AndroidLocalUserDto androidLocalUserDto){
+
+        System.out.println(androidLocalUserDto.getEmail());
+
+        return userService.getDriverAuth(androidLocalUserDto);
+    } // getDriverAuth()
+
+
 
 }
