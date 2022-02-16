@@ -108,6 +108,7 @@ public class UserService {
     @Transactional
     public void authDriver(MultipartFile id_image,
                            MultipartFile car_image,
+                           String email,
                            String carNumber,
                            String manufacturer,
                            String model){
@@ -148,6 +149,7 @@ public class UserService {
             id_image.transferTo(new File(id_filePath));
             car_image.transferTo(new File(car_filePath));
 
+            userRepository.updateDriverAuthentication(email);
         } catch(Exception e) {
             e.printStackTrace();
         }
