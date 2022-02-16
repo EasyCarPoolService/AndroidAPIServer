@@ -5,6 +5,8 @@ import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.post.PostDriverDto;
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
+import com.example.AndroidAPIServer.dto.post.UserPostDto;
+import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
 import lombok.RequiredArgsConstructor;
@@ -45,4 +47,17 @@ public class PostService {
         return postDriverRepository.findAll();
     }   //타세요 게시글 조회
 
+
+    @Transactional
+    public UserPostDto getUserPostData(AndroidLocalUserDto androidLocalUserDto) {
+
+        List<PostPassenger> postPassengers = postPassengerRepository.findPassengerPostByEmail(androidLocalUserDto.getEmail());
+        List<PostDriver> postDrivers = postDriverRepository.findDriverPostByEmail(androidLocalUserDto.getEmail());
+
+        return UserPostDto.builder()
+                .passenger(Integer.toString(postPassengers.size()))
+                .driver(Integer.toString(postDrivers.size()))
+                .ongoing("0")
+                .build();
+    }//getUserPostDat()
 }
