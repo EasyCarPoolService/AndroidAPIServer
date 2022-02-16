@@ -64,5 +64,4 @@ public class PostController {
     }   //타세요 게시글 조회
 
 
-
 }
