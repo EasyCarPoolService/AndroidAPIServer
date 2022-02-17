@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 public class User extends BaseTimeEntity{
-
+    
     @Id
     @Column(nullable = false)
     private String name;

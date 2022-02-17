@@ -14,6 +14,9 @@ import javax.persistence.*;
 public class ChatMessageEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(nullable = false)
     private String roomid;
 
