@@ -4,6 +4,7 @@ package com.example.AndroidAPIServer.controller;
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.post.PostDriverDto;
+import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
 import com.example.AndroidAPIServer.dto.post.UserPostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
@@ -52,6 +53,12 @@ public class PostController {
     @GetMapping("/driver/getPost")
     public List<PostDriver> getDriverPost(){
         return postService.getDriverPost();
+    }   //타세요 게시글 조회
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/user/getPost")
+    public List<PostDto> getDriverPost(@RequestBody AndroidLocalUserDto androidLocalUserDto){
+        return postService.getUserPost(androidLocalUserDto);
     }   //타세요 게시글 조회
 
 

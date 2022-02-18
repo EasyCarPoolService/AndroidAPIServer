@@ -4,16 +4,20 @@ package com.example.AndroidAPIServer.service;
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.post.PostDriverDto;
+import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
 import com.example.AndroidAPIServer.dto.post.UserPostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -46,6 +50,24 @@ public class PostService {
     public List<PostDriver> getDriverPost(){
         return postDriverRepository.findAll();
     }   //타세요 게시글 조회
+
+    @Transactional
+    public List<PostDto> getUserPost(AndroidLocalUserDto androidLocalUserDto){
+
+        List<PostDto> postPassenger = postPassengerRepository.findPassengerPostByEmail(androidLocalUserDto.getEmail()).stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
+
+        List<PostDto> postDriver = postDriverRepository.findDriverPostByEmail(androidLocalUserDto.getEmail()).stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
+
+        List<PostDto> posts = new ArrayList<PostDto>();
+        posts.addAll(postDriver);
+        posts.addAll(postPassenger);
+
+        return posts;
+    }   //엑세스한 유저가 작성한 게시글 조회
 
 
     @Transactional
