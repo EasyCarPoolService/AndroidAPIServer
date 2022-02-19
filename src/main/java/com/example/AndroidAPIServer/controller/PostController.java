@@ -45,13 +45,13 @@ public class PostController {
 
     @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/passenger/getPost")
-    public List<PostPassenger> getPassengerPost(){
+    public List<PostDto> getPassengerPost(){
         return postService.getPassengerPost();
     }   //태워주세요 게시글 조회
 
     @PreAuthorize("hasAnyRole('USER')")
     @GetMapping("/driver/getPost")
-    public List<PostDriver> getDriverPost(){
+    public List<PostDto> getDriverPost(){
         return postService.getDriverPost();
     }   //타세요 게시글 조회
 

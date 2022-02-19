@@ -42,13 +42,17 @@ public class PostService {
 
 
     @Transactional
-    public List<PostPassenger> getPassengerPost(){
-        return postPassengerRepository.findAll();
+    public List<PostDto> getPassengerPost(){
+        return postPassengerRepository.findAll().stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
     }   // 태워주세요 게시글 조회
 
     @Transactional
-    public List<PostDriver> getDriverPost(){
-        return postDriverRepository.findAll();
+    public List<PostDto> getDriverPost(){
+        return postDriverRepository.findAll().stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
     }   //타세요 게시글 조회
 
     @Transactional

@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PostDto {
 
+    private Long postId;
     private String type;
     private String email;
     private String nickname;
@@ -24,8 +25,8 @@ public class PostDto {
     private String message;
     private String fcmToken;
 
-
     public PostDto(PostPassenger entity){
+        this.postId = entity.getId();
         this.type = entity.getType();
         this.email = entity.getEmail();
         this.nickname = entity.getNickname();
@@ -40,6 +41,7 @@ public class PostDto {
     }
 
     public PostDto(PostDriver entity) {
+        this.postId = entity.getId();
         this.type = entity.getType();
         this.email = entity.getEmail();
         this.nickname = entity.getNickname();
@@ -52,10 +54,6 @@ public class PostDto {
         this.message = entity.getMessage();
         this.fcmToken = entity.getFcmToken();
     }
-
-
-
-
 
 
 }
