@@ -29,7 +29,7 @@ CREATE TABLE `chat_message_entity` (
   `message` text,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `chat_message_entity` (
 
 LOCK TABLES `chat_message_entity` WRITE;
 /*!40000 ALTER TABLE `chat_message_entity` DISABLE KEYS */;
-INSERT INTO `chat_message_entity` VALUES (1,'bcb3bb8e-b23f-482a-84c0-9cb6a2c833e9','dhkim0405','testsetsetsess','11시 44분'),(2,'a5a4f1d6-5225-4573-be34-d5cfd3b0c010','dhkim0405','test','11시 28분');
+INSERT INTO `chat_message_entity` VALUES (1,'bcb3bb8e-b23f-482a-84c0-9cb6a2c833e9','dhkim0405','testsetsetsess','11시 44분'),(2,'a5a4f1d6-5225-4573-be34-d5cfd3b0c010','dhkim0405','test','11시 28분'),(3,'4ed70287-5ae3-4d33-a830-82b2c502da5c','dhkim0405','test','19시 52분'),(4,'4ed70287-5ae3-4d33-a830-82b2c502da5c','dhkim0405','testtest','19시 52분'),(5,'4ed70287-5ae3-4d33-a830-82b2c502da5c','dhkim0405','testtest1','19시 52분'),(6,'4ed70287-5ae3-4d33-a830-82b2c502da5c','dhkim0405','testtest12','19시 52분'),(7,'4ed70287-5ae3-4d33-a830-82b2c502da5c','dhkim0405','testtest123','19시 52분'),(8,'bcb3bb8e-b23f-482a-84c0-9cb6a2c833e9','dhkim0405','test','20시 21분'),(9,'a949e907-a7a5-45e8-a618-0885a2fa0ed3','dhkim0405','test','17시 14분'),(10,'197a34a1-5972-42e3-b59f-3e49fecce1d9','dhkim0405','test','14시 10분'),(11,'d3c298ee-0c8f-44b3-aa0a-109d564b05fd','dhkim0405','test','14시 18분'),(12,'12cded80-27c3-4f16-98d6-255fe46f414b','dhkim0405','testtest','14시 21분'),(13,'75ca8b68-634b-4a41-a402-fe9accfc20c4','dhkim0405','test','14시 21분'),(14,'75ca8b68-634b-4a41-a402-fe9accfc20c4','dhkim0405','test','14시 22분'),(15,'75ca8b68-634b-4a41-a402-fe9accfc20c4','dhkim0405','test','14시 22분'),(16,'51f37c7e-f7a7-45bc-8b83-564f4d0427af','dhkim0405','test','15시 49분'),(17,'f9a82d0c-050a-4b28-adac-06c662e3f115','dhkim0405','tset','15시 51분'),(18,'ad7bca88-c12c-4166-8873-d07c7f39c019','dhkim0405','tes','15시 57분'),(19,'205b0a24-8cae-402c-bebd-88a5f9508e32','dhkim0405','test','15시 59분');
 /*!40000 ALTER TABLE `chat_message_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,6 +52,8 @@ DROP TABLE IF EXISTS `chat_room_entity`;
 CREATE TABLE `chat_room_entity` (
   `id` int NOT NULL AUTO_INCREMENT,
   `roomid` varchar(255) DEFAULT NULL,
+  `post_type` varchar(100) DEFAULT NULL,
+  `post_id` int DEFAULT NULL,
   `driver` varchar(100) DEFAULT NULL,
   `passenger` varchar(100) DEFAULT NULL,
   `passenger_nickname` varchar(100) DEFAULT NULL,
@@ -59,7 +61,7 @@ CREATE TABLE `chat_room_entity` (
   `driver_fcm_token` varchar(255) DEFAULT NULL,
   `passenger_fcm_token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +70,7 @@ CREATE TABLE `chat_room_entity` (
 
 LOCK TABLES `chat_room_entity` WRITE;
 /*!40000 ALTER TABLE `chat_room_entity` DISABLE KEYS */;
-INSERT INTO `chat_room_entity` VALUES (1,'bcb3bb8e-b23f-482a-84c0-9cb6a2c833e9','dhkim0405','dhkim0405','kim','kim','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO'),(2,'f70778ae-1b69-483f-892f-fdfb9966e8f1','dhkim0405','dhkim0405','kim','kim','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO'),(3,'a5a4f1d6-5225-4573-be34-d5cfd3b0c010','dhkim0405','dhkim0405','kim','kim','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO');
+INSERT INTO `chat_room_entity` VALUES (14,'ad7bca88-c12c-4166-8873-d07c7f39c019','passenger',1,'dhkim0405','dhkim0405','kim','kim','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO'),(15,'205b0a24-8cae-402c-bebd-88a5f9508e32','driver',1,'dhkim0405','dhkim0405','kim','kim','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO');
 /*!40000 ALTER TABLE `chat_room_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-17 19:48:45
+-- Dump completed on 2022-02-21 19:08:26
