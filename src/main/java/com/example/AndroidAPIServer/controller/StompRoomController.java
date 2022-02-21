@@ -3,8 +3,10 @@ package com.example.AndroidAPIServer.controller;
 
 import com.example.AndroidAPIServer.dto.chat.ChatMessageDto;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
+import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.ChatService;
+import com.example.AndroidAPIServer.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +21,19 @@ import java.util.List;
 @RequestMapping(value = "/api/chat")
 public class StompRoomController {
 
+
     private final ChatService chatService;
+    private final PostService postService;
 
     @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/createroom")
     public RoomDto createRoom(@RequestBody RoomDto roomDto){
+
+        System.out.println(roomDto.getPostType());
+
         roomDto.setRoomId(chatService.createRoomDto(roomDto));
+
+
         return roomDto;
     }
     @PreAuthorize("hasAnyRole('USER')")
@@ -37,6 +46,13 @@ public class StompRoomController {
     @PostMapping("/findMessageByRoomId")
     public List<ChatMessageDto> enterRoom(@RequestBody RoomDto roomDto){
         return chatService.findMessageByRoomId(roomDto.getRoomId());
+    }
+
+    
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/findPostInfo")
+    public PostDto findPostInfo(@RequestBody RoomDto roomDto){
+        return postService.findPostById(roomDto);
     }
 
 }

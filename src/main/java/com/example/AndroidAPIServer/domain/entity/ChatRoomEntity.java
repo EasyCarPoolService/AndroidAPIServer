@@ -21,6 +21,12 @@ public class ChatRoomEntity {
     private String roomid;
 
     @Column(nullable = false)
+    private String postType;
+
+    @Column(nullable = false)   //어떤 게시글에 대한 채팅방인지 식별
+    private Long postId;
+
+    @Column(nullable = false)
     private String driver;
 
     @Column(nullable = false)

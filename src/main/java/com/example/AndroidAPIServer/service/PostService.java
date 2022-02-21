@@ -3,6 +3,7 @@ package com.example.AndroidAPIServer.service;
 
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
+import com.example.AndroidAPIServer.dto.chat.RoomDto;
 import com.example.AndroidAPIServer.dto.post.PostDriverDto;
 import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
@@ -12,11 +13,13 @@ import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -86,4 +89,24 @@ public class PostService {
                 .ongoing("0")
                 .build();
     }//getUserPostDat()
+
+    @Transactional
+    public PostDto findPostById(RoomDto roomDto){
+        if(roomDto.getPostType().equals("passenger")){  //요청 게시글이 태워주세요
+            PostPassenger postPassenger = postPassengerRepository.findById(roomDto.getPostId())
+                    .orElseThrow(()->
+                            new IllegalArgumentException("해당 게시글이 없습니다."));
+
+            return new PostDto(postPassenger);
+        }else{  //요청 게시글이 타세요
+            PostDriver postDriver = postDriverRepository.findById(roomDto.getPostId())
+                    .orElseThrow(()->
+                            new IllegalArgumentException("해당 게시글이 없습니다."));
+
+            return new PostDto(postDriver);
+        }
+
+    }//findPostById()
+
+
 }

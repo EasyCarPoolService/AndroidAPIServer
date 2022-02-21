@@ -14,6 +14,8 @@ import java.util.UUID;
 @Setter
 public class RoomDto {
     private String roomId;
+    private String postType;
+    private Long postId;
     private String driver;
     private String passenger;
     private String driverNickname;
@@ -29,6 +31,8 @@ public class RoomDto {
 
         return ChatRoomEntity.builder()
                 .roomid(UUID.randomUUID().toString())
+                .postType(postType)
+                .postId(postId)
                 .driver(driver)
                 .passenger(passenger)
                 .driverNickname(driverNickname)
@@ -39,7 +43,9 @@ public class RoomDto {
     }
 
     @Builder
-    public RoomDto(String driver, String passenger, String driverNickname, String passengerNickname, String driverFcmToken, String passengerFcmToken){
+    public RoomDto(String postType, Long postId, String driver, String passenger, String driverNickname, String passengerNickname, String driverFcmToken, String passengerFcmToken){
+        this.postType = postType;
+        this.postId = postId;
         this.driver = driver;
         this.passenger = passenger;
         this.driverNickname = driverNickname;
@@ -50,6 +56,8 @@ public class RoomDto {
 
     public RoomDto(ChatRoomEntity entity){
         this.roomId = entity.getRoomid();
+        this.postType = entity.getPostType();
+        this.postId = entity.getPostId();
         this.driver = entity.getDriver();
         this.passenger = entity.getPassenger();
         this.driverNickname = entity.getDriverNickname();
@@ -57,5 +65,6 @@ public class RoomDto {
         this.driverFcmToken = entity.getDriverFcmToken();
         this.passengerFcmToken = entity.getPassengerFcmToken();
     }
+
 
 }
