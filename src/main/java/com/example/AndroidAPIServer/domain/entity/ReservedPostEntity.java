@@ -1,6 +1,5 @@
 package com.example.AndroidAPIServer.domain.entity;
 
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,25 +10,30 @@ import javax.persistence.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class ChatMessageEntity {
-
+public class ReservedPostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String roomid;
+    private Long postId;
 
     @Column(nullable = false)
-    private String type;
+    private String driver;
 
     @Column(nullable = false)
-    private String writer;
+    private String passenger;
 
     @Column(nullable = false)
-    private String message;
+    private String date;
 
     @Column(nullable = false)
     private String time;
 
+
+
 }
+
+
+
+

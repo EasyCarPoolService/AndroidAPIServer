@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class CalendarPostDto {
 
+
     private String type;
     private String email;
     private String nickname;

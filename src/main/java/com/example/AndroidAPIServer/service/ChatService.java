@@ -2,10 +2,13 @@ package com.example.AndroidAPIServer.service;
 
 
 import com.example.AndroidAPIServer.domain.entity.ChatMessageEntity;
+import com.example.AndroidAPIServer.domain.entity.ReservedPostEntity;
 import com.example.AndroidAPIServer.dto.chat.ChatMessageDto;
+import com.example.AndroidAPIServer.dto.chat.ReservedPostDto;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
 import com.example.AndroidAPIServer.repository.ChatMessageRepository;
 import com.example.AndroidAPIServer.repository.ChatRoomRepository;
+import com.example.AndroidAPIServer.repository.ReservedPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ public class ChatService {
     private Map<String, RoomDto> roomDtoMap;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatMessageRepository chatMessageRepository;
+    private final ReservedPostRepository reservedPostRepository;
     private final SimpMessagingTemplate template;
     private final FCMService fcmService;
 
@@ -65,6 +69,11 @@ public class ChatService {
             return null;
         }
 
+    }
+
+    //성사된 예약에 대한 정보 저장
+    public void registerReservedPost(ReservedPostDto dto){
+        reservedPostRepository.save(dto.toEntity());
     }
 
 

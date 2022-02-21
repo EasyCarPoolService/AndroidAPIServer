@@ -2,6 +2,7 @@ package com.example.AndroidAPIServer.controller;
 
 
 import com.example.AndroidAPIServer.dto.calendar.CalendarPostDto;
+import com.example.AndroidAPIServer.dto.chat.ReservedPostDto;
 import com.example.AndroidAPIServer.dto.post.UserPostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.CalendarService;
@@ -24,7 +25,7 @@ public class CalendarController {
     //user가 작성하거나 진행중인 post정보 load
     @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/post")
-    public List<CalendarPostDto> getUserPostData(@RequestBody AndroidLocalUserDto androidLocalUserDto){
+    public List<ReservedPostDto> getUserPostData(@RequestBody AndroidLocalUserDto androidLocalUserDto){
         return calendarService.getCalendarPostData(androidLocalUserDto);
     }   //타세요 게시글 조회
 

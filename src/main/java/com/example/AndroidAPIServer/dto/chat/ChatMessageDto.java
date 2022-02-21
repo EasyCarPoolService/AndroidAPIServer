@@ -15,6 +15,7 @@ import java.util.UUID;
 @Setter
 public class ChatMessageDto {
     private String roomId;
+    private String type;
     private String writer;
     private String message;
     private String fcmToken;
@@ -32,6 +33,7 @@ public class ChatMessageDto {
 
         return ChatMessageEntity.builder()
                 .roomid(roomId)
+                .type(type)
                 .writer(writer)
                 .message(message)
                 .time(time)
@@ -48,6 +50,7 @@ public class ChatMessageDto {
 
     public ChatMessageDto(ChatMessageEntity entity){
         this.roomId = entity.getRoomid();
+        this.type = entity.getType();
         this.writer = entity.getWriter();
         this.message = entity.getMessage();
         this.time = entity.getTime();
