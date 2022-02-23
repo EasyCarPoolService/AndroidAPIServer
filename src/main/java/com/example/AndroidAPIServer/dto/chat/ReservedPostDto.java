@@ -14,6 +14,7 @@ import lombok.Setter;
 public class ReservedPostDto {
 
     private Long postId;
+    private String postType;
     private String driver;
     private String passenger;
     private String date;
@@ -23,6 +24,7 @@ public class ReservedPostDto {
     public ReservedPostEntity toEntity(){
         return ReservedPostEntity.builder()
                 .postId(postId)
+                .postType(postType)
                 .driver(driver)
                 .passenger(passenger)
                 .date(date)
@@ -32,11 +34,11 @@ public class ReservedPostDto {
 
     public ReservedPostDto(ReservedPostEntity entity){
         this.postId = entity.getPostId();
+        this.postType = entity.getPostType();
         this.driver = entity.getDriver();
         this.passenger = entity.getPassenger();
         this.date = entity.getDate();
         this.time = entity.getTime();
-    }
-
+    } // constructor
 
 }

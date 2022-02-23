@@ -33,9 +33,6 @@ public class StompChatController {
     @PostMapping("/api/chat/registerReservedPost")
     public ResponseEntity<String> registerReservedPost(@RequestBody ReservedPostDto dto){
 
-
-
-
         chatService.registerReservedPost(dto);
 
         return ResponseEntity.ok("success");

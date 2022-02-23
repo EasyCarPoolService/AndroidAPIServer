@@ -19,6 +19,9 @@ public class ReservedPostEntity {
     private Long postId;
 
     @Column(nullable = false)
+    private String postType;
+
+    @Column(nullable = false)
     private String driver;
 
     @Column(nullable = false)

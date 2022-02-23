@@ -48,7 +48,7 @@ public class StompRoomController {
         return chatService.findMessageByRoomId(roomDto.getRoomId());
     }
 
-    
+
     @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/findPostInfo")
     public PostDto findPostInfo(@RequestBody RoomDto roomDto){

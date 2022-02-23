@@ -5,6 +5,7 @@ import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.calendar.CalendarPostDto;
 import com.example.AndroidAPIServer.dto.chat.ReservedPostDto;
+import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.post.UserPostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
@@ -51,5 +52,24 @@ public class CalendarService {
 
         return reservedPostDtos;
     }//getUserPostDat()
+
+    public PostDto getPostDtoById(ReservedPostDto reservedPostDto) {
+        if(reservedPostDto.getPostType().equals("passenger")){ //태워주세요 테이블 조회
+
+            PostPassenger postPassenger = postPassengerRepository.findById(reservedPostDto.getPostId())
+                    .orElseThrow(()->
+                            new IllegalArgumentException("해당 게시글이 없습니다."));
+
+            return new PostDto(postPassenger);
+
+        }else { //타세요 테이블 조회
+
+            PostDriver postDriver = postDriverRepository.findById(reservedPostDto.getPostId())
+                    .orElseThrow(()->
+                            new IllegalArgumentException("해당 게시글이 없습니다."));
+
+            return new PostDto(postDriver);
+        }
+    } // getPostDtoById()
 
 }

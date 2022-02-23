@@ -3,6 +3,7 @@ package com.example.AndroidAPIServer.controller;
 
 import com.example.AndroidAPIServer.dto.calendar.CalendarPostDto;
 import com.example.AndroidAPIServer.dto.chat.ReservedPostDto;
+import com.example.AndroidAPIServer.dto.post.PostDto;
 import com.example.AndroidAPIServer.dto.post.UserPostDto;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.CalendarService;
@@ -29,4 +30,10 @@ public class CalendarController {
         return calendarService.getCalendarPostData(androidLocalUserDto);
     }   //타세요 게시글 조회
 
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/detail")
+    public PostDto getUserPostData(@RequestBody ReservedPostDto reservedPostDto){
+
+        return calendarService.getPostDtoById(reservedPostDto);
+    }   //postDetail조회
 }
