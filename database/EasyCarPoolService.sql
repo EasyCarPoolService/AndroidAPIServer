@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.27, for macos11.6 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.27, for macos11.6 (x86_64)
 --
 -- Host: localhost    Database: EasyCarPoolService
 -- ------------------------------------------------------
@@ -30,7 +30,7 @@ CREATE TABLE `chat_message_entity` (
   `message` text,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `chat_message_entity` (
 
 LOCK TABLES `chat_message_entity` WRITE;
 /*!40000 ALTER TABLE `chat_message_entity` DISABLE KEYS */;
-INSERT INTO `chat_message_entity` VALUES (22,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 24분'),(23,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 29분'),(24,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(25,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(26,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(27,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','hi there','21시 04분'),(28,'b337e389-9757-42df-ac26-4636553dadf6','request','lee','request reservation','21시 04분'),(29,'5290d8d3-606a-4b36-8c0e-46e7a5950337','request','dhkim0405','request reservation','21시 30분');
+INSERT INTO `chat_message_entity` VALUES (22,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 24분'),(23,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 29분'),(24,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(25,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(26,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(27,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','hi there','21시 04분'),(28,'b337e389-9757-42df-ac26-4636553dadf6','request','lee','request reservation','21시 04분'),(29,'5290d8d3-606a-4b36-8c0e-46e7a5950337','request','dhkim0405','request reservation','21시 30분'),(30,'b337e389-9757-42df-ac26-4636553dadf6','confirm','dhkim0405','confirm of request','13시 19분'),(31,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','tet','13시 21분'),(32,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','tet','13시 22분'),(33,'b337e389-9757-42df-ac26-4636553dadf6','request','dhkim0405','request reservation','14시 32분'),(34,'b337e389-9757-42df-ac26-4636553dadf6','confirm','lee','confirm of request','14시 33분');
 /*!40000 ALTER TABLE `chat_message_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,12 +157,13 @@ DROP TABLE IF EXISTS `reserved_post_entity`;
 CREATE TABLE `reserved_post_entity` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post_id` int DEFAULT NULL,
+  `post_type` varchar(100) DEFAULT NULL,
   `driver` varchar(100) DEFAULT NULL,
   `passenger` varchar(100) DEFAULT NULL,
   `date` varchar(100) DEFAULT NULL,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +172,7 @@ CREATE TABLE `reserved_post_entity` (
 
 LOCK TABLES `reserved_post_entity` WRITE;
 /*!40000 ALTER TABLE `reserved_post_entity` DISABLE KEYS */;
-INSERT INTO `reserved_post_entity` VALUES (1,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL),(3,1,'lee','dhkim0405','2022.02.17','19:2'),(4,1,'lee','dhkim0405','2022.02.17','19:2');
+INSERT INTO `reserved_post_entity` VALUES (6,1,'passenger','lee','dhkim0405','2022.02.17','19:2');
 /*!40000 ALTER TABLE `reserved_post_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-21 22:42:50
+-- Dump completed on 2022-02-23 15:21:40
