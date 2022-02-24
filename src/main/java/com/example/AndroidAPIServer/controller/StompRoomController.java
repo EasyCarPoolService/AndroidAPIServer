@@ -33,9 +33,9 @@ public class StompRoomController {
 
         roomDto.setRoomId(chatService.createRoomDto(roomDto));
 
-
         return roomDto;
     }
+
     @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/getAllRoom")
     public List<RoomDto> getAllRoom(@RequestBody AndroidLocalUserDto userDto){
