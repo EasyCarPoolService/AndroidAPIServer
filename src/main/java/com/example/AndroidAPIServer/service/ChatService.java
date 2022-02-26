@@ -49,6 +49,8 @@ public class ChatService {
         chatMessageRepository.save(newMessage.toEntity()); //채팅 메시지 저장
         template.convertAndSend("/sub/chat/room"+newMessage.getRoomId(), newMessage);
 
+
+
         try{
             fcmService.sendMessageTo(newMessage.getFcmToken(), newMessage.getWriter(), newMessage.getMessage());
         }catch(Exception e){
@@ -56,7 +58,7 @@ public class ChatService {
         }
 
         //firebase code
-    }
+    }//sendMessage
 
     public List<ChatMessageDto> findMessageByRoomId(String roomId){
 

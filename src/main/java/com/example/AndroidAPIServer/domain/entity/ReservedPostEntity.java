@@ -22,10 +22,19 @@ public class ReservedPostEntity {
     private String postType;
 
     @Column(nullable = false)
+    private String locationRoomId;
+
+    @Column(nullable = false)
     private String driver;
 
     @Column(nullable = false)
+    private String driverFcmToken;
+
+    @Column(nullable = false)
     private String passenger;
+
+    @Column(nullable = false)
+    private String passengerFcmToken;
 
     @Column(nullable = false)
     private String date;

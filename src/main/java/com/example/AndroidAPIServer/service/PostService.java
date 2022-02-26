@@ -4,10 +4,7 @@ package com.example.AndroidAPIServer.service;
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
-import com.example.AndroidAPIServer.dto.post.PostDriverDto;
-import com.example.AndroidAPIServer.dto.post.PostDto;
-import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
-import com.example.AndroidAPIServer.dto.post.UserPostDto;
+import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
@@ -107,4 +104,19 @@ public class PostService {
         }
 
     }//findPostById()
+
+    public List<PostDto> getPostByDistrict(PostDistrictDto postDistrictDto) {
+
+        if(postDistrictDto.getPostType().equals("driver")){ // 타세요
+            return postDriverRepository.findDriverPostByDistrict(postDistrictDto.getDistrict()).stream()
+                    .map(PostDto::new)
+                    .collect(Collectors.toList());
+        }else if (postDistrictDto.getPostType().equals("passenger")){    //태워주세요
+            return postPassengerRepository.findPassengerPostByDistrict(postDistrictDto.getDistrict()).stream()
+                    .map(PostDto::new)
+                    .collect(Collectors.toList());
+        }else{  //user
+            return null;
+        }
+    }//getPostByDistrict 유저가 검색한 지역명 기반 게시글 조회
 }

@@ -15,5 +15,8 @@ public interface PostDriverRepository extends JpaRepository<PostDriver, Long> {
     @Query("SELECT p FROM PostDriver p WHERE p.email = :email")
     public List<PostDriver> findDriverPostByEmail(@Param("email") String email);
 
+    @Query("SELECT p FROM PostDriver p WHERE p.departure LIKE %:district% OR p.destination LIKE %:district%")
+    public List<PostDriver> findDriverPostByDistrict(@Param("district") String district);
+
     //시간순으로 findAll() 수행하도록 변경할것
 }

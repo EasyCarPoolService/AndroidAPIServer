@@ -3,10 +3,7 @@ package com.example.AndroidAPIServer.controller;
 
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
-import com.example.AndroidAPIServer.dto.post.PostDriverDto;
-import com.example.AndroidAPIServer.dto.post.PostDto;
-import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
-import com.example.AndroidAPIServer.dto.post.UserPostDto;
+import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -70,5 +67,10 @@ public class PostController {
         return postService.getUserPostData(androidLocalUserDto);
     }   //타세요 게시글 조회
 
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/getPostByDistrict")
+    public List<PostDto> getPostByDistrict(@RequestBody PostDistrictDto postDistrictDto){
+        return postService.getPostByDistrict(postDistrictDto);
+    }   //타세요 게시글 조회
 
 }
