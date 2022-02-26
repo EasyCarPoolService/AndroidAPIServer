@@ -6,6 +6,7 @@ import com.example.AndroidAPIServer.domain.entity.PostPassenger;
 import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.service.PostService;
+import com.google.gson.annotations.SerializedName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,15 +42,16 @@ public class PostController {
     } //타세요 게시글 저장
 
     @PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("/passenger/getPost")
-    public List<PostDto> getPassengerPost(){
-        return postService.getPassengerPost();
+    @PostMapping("/passenger/getPost")
+    public List<PostDto> getPassengerPost(@RequestBody int currentPage){
+        System.out.println("currentPage : " + currentPage);
+        return postService.getPassengerPost(currentPage);
     }   //태워주세요 게시글 조회
 
     @PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("/driver/getPost")
-    public List<PostDto> getDriverPost(){
-        return postService.getDriverPost();
+    @PostMapping("/driver/getPost")
+    public List<PostDto> getDriverPost(@RequestBody int currentPage){
+        return postService.getDriverPost(currentPage);
     }   //타세요 게시글 조회
 
     @PreAuthorize("hasAnyRole('USER')")

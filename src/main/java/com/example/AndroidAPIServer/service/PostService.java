@@ -10,6 +10,8 @@ import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,22 +44,37 @@ public class PostService {
 
 
     @Transactional
-    public List<PostDto> getPassengerPost(){
-        return postPassengerRepository.findAll().stream()
+    public List<PostDto> getPassengerPost(int currentPage){
+        Pageable limit = PageRequest.of(currentPage,10);
+
+
+        return postPassengerRepository.findAll(limit).stream()
                 .map(PostDto::new)
                 .collect(Collectors.toList());
+
     }   // 태워주세요 게시글 조회
 
     @Transactional
-    public List<PostDto> getDriverPost(){
-        return postDriverRepository.findAll().stream()
+    public List<PostDto> getDriverPost(int currentPage){
+        Pageable limit = PageRequest.of(currentPage,10);
+
+        List<PostDto> temp = postDriverRepository.findAll(limit).stream()
                 .map(PostDto::new)
                 .collect(Collectors.toList());
+
+        for (int i = 0; i < temp.size(); i++) {
+            System.out.println(temp.get(i).getPostId().toString());
+        }
+
+        System.out.println(temp.size());
+
+        return temp;
     }   //타세요 게시글 조회
 
+
+    //check --> limitable 적용여부 판단
     @Transactional
     public List<PostDto> getUserPost(AndroidLocalUserDto androidLocalUserDto){
-
         List<PostDto> postPassenger = postPassengerRepository.findPassengerPostByEmail(androidLocalUserDto.getEmail()).stream()
                 .map(PostDto::new)
                 .collect(Collectors.toList());
