@@ -91,6 +91,7 @@ public class PostService {
     }   //엑세스한 유저가 작성한 게시글 조회
 
 
+    //진행중 0 -> reservedPostDto 개수 포함히여 리턴하도록 변경
     @Transactional
     public UserPostDto getUserPostData(AndroidLocalUserDto androidLocalUserDto) {
 
