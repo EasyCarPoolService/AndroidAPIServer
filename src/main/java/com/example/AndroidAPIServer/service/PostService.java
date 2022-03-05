@@ -137,4 +137,10 @@ public class PostService {
             return null;
         }
     }//getPostByDistrict 유저가 검색한 지역명 기반 게시글 조회
+
+
+    /*public void updatePostTable(){
+        postDriverRepository.
+    } //updatePostTable()*/
+
 }
