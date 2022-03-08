@@ -21,16 +21,6 @@ public class UserController {
 
     private final TokenProvider tokenProvider;
 
-
-    /*@Part profile_image : MultipartBody.Part?,
-    @Part("name") name: RequestBody?,
-    @Part("email") email: RequestBody?,
-    @Part("nickname") nickname: RequestBody?,
-    @Part("password") password: RequestBody?,
-    @Part("birth") birth: RequestBody?,
-    @Part("gender") gender: RequestBody?,
-    @Part("driverAuthentication") driverAuthentication: RequestBody?,*/
-
     //순서 회원가입 진행완료 후 이어서 사진 저장하도록 설정
     @PostMapping("/signup")
     public ResponseEntity<String> signup(
@@ -47,7 +37,6 @@ public class UserController {
         String responseMessage;
 
         System.out.println("fcmToken is "+fcmToken.toString());
-
 
         //join Dto구성 코드 작성
         JoinDto joinDto = JoinDto.builder()
@@ -97,14 +86,6 @@ public class UserController {
             responseMessage = e.getMessage();
         }
         return ResponseEntity.ok(responseMessage);
-    }
-
-    @PostMapping("/test")
-    @PreAuthorize("hasAnyRole('USER')")
-    public ResponseEntity<String> test(@RequestBody TestDto testDto){
-        System.out.println(testDto.getMessage());
-
-        return ResponseEntity.ok("Success");
     }
 
     //@RequestMapping(method= RequestMethod.GET)

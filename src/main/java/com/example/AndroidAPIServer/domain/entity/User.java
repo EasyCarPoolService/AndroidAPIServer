@@ -35,6 +35,9 @@ public class User extends BaseTimeEntity{
     private String gender;
 
     @Column(nullable = false)
+    private float rate;
+
+    @Column(nullable = false)
     private Boolean driverAuthentication;
 
     @Column(nullable = false)

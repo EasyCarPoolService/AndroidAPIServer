@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class BatchScheduler {
 
 
-    @Scheduled(cron = "0/10 * * * * *")
+    @Scheduled(cron = "0/100000 * * * * *")
     public void testSchedule(){
 
         System.out.println("test");

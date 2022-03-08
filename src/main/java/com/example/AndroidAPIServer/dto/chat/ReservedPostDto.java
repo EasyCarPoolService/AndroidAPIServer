@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class ReservedPostDto {
-    
+
     private Long postId;
     private String postType;
     private String locationRoomId;
