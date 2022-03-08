@@ -8,6 +8,7 @@ import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
+import com.example.AndroidAPIServer.repository.PostReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostPassengerRepository postPassengerRepository;
     private final PostDriverRepository postDriverRepository;
+    private final PostReviewRepository postReviewRepository;
 
     //태워주세요 게시글 등록
     @Transactional
@@ -139,8 +141,11 @@ public class PostService {
     }//getPostByDistrict 유저가 검색한 지역명 기반 게시글 조회
 
 
-    /*public void updatePostTable(){
-        postDriverRepository.
-    } //updatePostTable()*/
+    @Transactional
+    public void progressToComplete(PostReviewDto dto){
+
+        postReviewRepository.save(dto.toEntity());
+    } //progressToComplete()
+
 
 }

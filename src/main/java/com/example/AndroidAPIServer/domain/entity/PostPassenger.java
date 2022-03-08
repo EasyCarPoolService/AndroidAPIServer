@@ -30,6 +30,9 @@ public class PostPassenger extends BaseTimeEntity {
     private String gender;
 
     @Column(nullable = false)
+    private Float rate;
+
+    @Column(nullable = false)
     private String departure;
 
     @Column(nullable = false)

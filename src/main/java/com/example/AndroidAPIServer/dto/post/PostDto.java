@@ -17,6 +17,7 @@ public class PostDto {
     private String email;
     private String nickname;
     private String gender;
+    private Float rate;
     private String departure;
     private String destination;
     private String departureDate;
@@ -31,6 +32,7 @@ public class PostDto {
         this.email = entity.getEmail();
         this.nickname = entity.getNickname();
         this.gender = entity.getGender();
+        this.rate = entity.getRate();
         this.departure = entity.getDeparture();
         this.destination = entity.getDestination();
         this.departureDate = entity.getDepartureDate();
@@ -46,6 +48,7 @@ public class PostDto {
         this.email = entity.getEmail();
         this.nickname = entity.getNickname();
         this.gender = entity.getGender();
+        this.rate = entity.getRate();
         this.departure = entity.getDeparture();
         this.destination = entity.getDestination();
         this.departureDate = entity.getDepartureDate();

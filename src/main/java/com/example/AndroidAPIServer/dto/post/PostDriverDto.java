@@ -18,6 +18,7 @@ public class PostDriverDto {
     private String email;
     private String nickname;
     private String gender;
+    private Float rate;
     private String departure;
     private String destination;
     private String departureDate;
@@ -33,6 +34,7 @@ public class PostDriverDto {
                 .email(email)
                 .nickname(nickname)
                 .gender(gender)
+                .rate(rate)
                 .departure(departure)
                 .destination(destination)
                 .departureDate(departureDate)

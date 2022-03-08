@@ -75,4 +75,12 @@ public class PostController {
         return postService.getPostByDistrict(postDistrictDto);
     }   //타세요 게시글 조회
 
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/progressToComplete")
+    public ResponseEntity<String> progressToComplete(@RequestBody PostReviewDto dto){
+        postService.progressToComplete(dto);
+        return ResponseEntity.ok("trnsaction success");
+    }   //진행중 -> 완료처리 (후기 저장)
+
+
 }

@@ -62,11 +62,12 @@ public class UserService {
 
             User user = userRepository.findUserByEmail(loginDto.getEmail()).get();
 
-            //check
+
             AndroidLocalUserDto dto = AndroidLocalUserDto.builder()
                     .nickname(user.getNickname())
                     .email(user.getEmail())
                     .gender(user.getGender())
+                    .rate(user.getRate())
                     .token(jwt)
                     .driverAuthentication(user.getDriverAuthentication())
                     .fcmToken(user.getFcmToken())
@@ -95,6 +96,7 @@ public class UserService {
                     .nickname(user.getNickname())
                     .token(token)
                     .gender(user.getGender())
+                    .rate(user.getRate())
                     .driverAuthentication(user.getDriverAuthentication())
                     .fcmToken(user.getFcmToken())
                     .build();
