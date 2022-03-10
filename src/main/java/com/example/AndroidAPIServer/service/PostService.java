@@ -3,12 +3,14 @@ package com.example.AndroidAPIServer.service;
 
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
+import com.example.AndroidAPIServer.domain.entity.User;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
 import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
 import com.example.AndroidAPIServer.repository.PostDriverRepository;
 import com.example.AndroidAPIServer.repository.PostPassengerRepository;
 import com.example.AndroidAPIServer.repository.PostReviewRepository;
+import com.example.AndroidAPIServer.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +30,7 @@ public class PostService {
     private final PostPassengerRepository postPassengerRepository;
     private final PostDriverRepository postDriverRepository;
     private final PostReviewRepository postReviewRepository;
+    private final UserRepository userRepository;
 
     //태워주세요 게시글 등록
     @Transactional
@@ -144,6 +147,12 @@ public class PostService {
     @Transactional
     public void progressToComplete(PostReviewDto dto){
 
+        User user = userRepository.findUserByEmail(dto.getHost_email()).get();
+        if(user != null){
+            Float rate = (user.getRate()+dto.getRate())/2;
+            userRepository.updateRate(dto.getHost_email(), rate);
+        }
+        
         postReviewRepository.save(dto.toEntity());
     } //progressToComplete()
 
