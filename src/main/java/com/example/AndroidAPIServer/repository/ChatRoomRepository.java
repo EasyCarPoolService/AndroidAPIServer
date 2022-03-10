@@ -14,6 +14,10 @@ import java.util.Optional;
 
 public interface ChatRoomRepository extends JpaRepository<ChatRoomEntity, Long> {
 
+
+    @Query("SELECT c FROM ChatRoomEntity c WHERE c.roomid = :roomId")
+    public Optional<ChatRoomEntity> findChatRoomByRoomId(@Param("roomId") String roomId);
+
     //select * from testTBL where name1='kim' or name2='kim';
     @Query("SELECT c FROM ChatRoomEntity c WHERE c.passenger = :email OR c.driver = :email")
     public List<ChatRoomEntity> findChatRoomByEmail(@Param("email") String email);
@@ -26,7 +30,7 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoomEntity, Long> 
                                                 @Param("postId") Long postId,
                                                 @Param("driver") String driver,
                                                 @Param("passenger") String passenger);
-    // create room 수행시 기존에 방이 존재하는지 확인하기 위해 chatRoomDto와 일치하는 방이 존재하는지 조회
+
 
 
 }

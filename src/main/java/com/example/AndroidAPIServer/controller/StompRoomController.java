@@ -55,5 +55,17 @@ public class StompRoomController {
         return postService.findPostById(roomDto);
     }
 
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/leaveChatRoom")
+    public ResponseEntity<String> leaveChatRoom(@RequestBody RoomDto roomDto){
+        chatService.leaveChatRoom(roomDto);
+        return ResponseEntity.ok("success");
+    }   //return succes -> transaction동작 여부에 따라 리턴하도록 수정!
+
+
+
+
+
 }
 

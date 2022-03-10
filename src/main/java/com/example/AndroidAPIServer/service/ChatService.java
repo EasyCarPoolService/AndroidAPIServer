@@ -47,6 +47,8 @@ public class ChatService {
             return chatRoomRepository.save(roomDto.toEntity()).getRoomid();
         }
 
+
+
     }
 
     public List<RoomDto> findAllRooms(String userEmail){
@@ -60,13 +62,12 @@ public class ChatService {
         chatMessageRepository.save(newMessage.toEntity()); //채팅 메시지 저장
         template.convertAndSend("/sub/chat/room"+newMessage.getRoomId(), newMessage);
 
-
-
         try{
             fcmService.sendMessageTo(newMessage.getFcmToken(), newMessage.getWriter(), newMessage.getMessage());
         }catch(Exception e){
             System.out.println(e.toString());
         }
+
 
         //firebase code
     }//sendMessage
@@ -89,5 +90,12 @@ public class ChatService {
         reservedPostRepository.save(dto.toEntity());
     }
 
+    public void leaveChatRoom(RoomDto roomDto) {
+        Optional<ChatRoomEntity> chatRoomEntity = chatRoomRepository.findChatRoomByRoomId(roomDto.getRoomId());
+        if(chatRoomEntity.isPresent()){ //존재할 경우
+            chatRoomRepository.delete(chatRoomEntity.get());
+            chatMessageRepository.deleteMessageByRoomID(roomDto.getRoomId());
+        }
 
+    }   //leaveChatRoom() -> 채팅방 뿐만아니라 채팅방에 해당하는 메시지 또한 삭제하도록 변경!
 }
