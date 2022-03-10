@@ -2,6 +2,7 @@ package com.example.AndroidAPIServer.service;
 
 
 import com.example.AndroidAPIServer.domain.entity.ChatMessageEntity;
+import com.example.AndroidAPIServer.domain.entity.ChatRoomEntity;
 import com.example.AndroidAPIServer.domain.entity.ReservedPostEntity;
 import com.example.AndroidAPIServer.dto.chat.ChatMessageDto;
 import com.example.AndroidAPIServer.dto.chat.ReservedPostDto;
@@ -34,8 +35,18 @@ public class ChatService {
         roomDtoMap = new LinkedHashMap<>();
     }
 
+
+    //check : create수행시 방이 이미 존재할 경우 기존방을 찾아서 return
     public String createRoomDto(RoomDto roomDto){
-        return chatRoomRepository.save(roomDto.toEntity()).getRoomid();
+
+        Optional<ChatRoomEntity> chatRoomEntity = chatRoomRepository.findChatRoomByDto(roomDto.getPostType(), roomDto.getPostId(), roomDto.getDriver(), roomDto.getPassenger());
+        if(chatRoomEntity.isPresent()){ //roomDto와 일치하는 방이 존재할경우 기존의 방 정보를 리턴
+            return chatRoomEntity.get().getRoomid();
+
+        }else{  //roomDto와 일치하는 방이 존재하지 않을 경우 새로 save
+            return chatRoomRepository.save(roomDto.toEntity()).getRoomid();
+        }
+
     }
 
     public List<RoomDto> findAllRooms(String userEmail){

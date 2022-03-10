@@ -152,7 +152,7 @@ public class PostService {
             Float rate = (user.getRate()+dto.getRate())/2;
             userRepository.updateRate(dto.getHost_email(), rate);
         }
-        
+
         postReviewRepository.save(dto.toEntity());
     } //progressToComplete()
 
