@@ -79,8 +79,7 @@ public class PostController {
     @PostMapping("/progressToComplete")
     public ResponseEntity<String> progressToComplete(@RequestBody PostReviewDto dto){
         postService.progressToComplete(dto);
-        return ResponseEntity.ok("trnsaction success");
+        return ResponseEntity.ok("success");
     }   //진행중 -> 완료처리 (후기 저장)
-
 
 }

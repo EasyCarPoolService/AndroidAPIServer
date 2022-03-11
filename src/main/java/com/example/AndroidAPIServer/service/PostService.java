@@ -3,14 +3,12 @@ package com.example.AndroidAPIServer.service;
 
 import com.example.AndroidAPIServer.domain.entity.PostDriver;
 import com.example.AndroidAPIServer.domain.entity.PostPassenger;
+import com.example.AndroidAPIServer.domain.entity.ReservedPostEntity;
 import com.example.AndroidAPIServer.domain.entity.User;
 import com.example.AndroidAPIServer.dto.chat.RoomDto;
 import com.example.AndroidAPIServer.dto.post.*;
 import com.example.AndroidAPIServer.dto.user.AndroidLocalUserDto;
-import com.example.AndroidAPIServer.repository.PostDriverRepository;
-import com.example.AndroidAPIServer.repository.PostPassengerRepository;
-import com.example.AndroidAPIServer.repository.PostReviewRepository;
-import com.example.AndroidAPIServer.repository.UserRepository;
+import com.example.AndroidAPIServer.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +29,7 @@ public class PostService {
     private final PostDriverRepository postDriverRepository;
     private final PostReviewRepository postReviewRepository;
     private final UserRepository userRepository;
+    private final ReservedPostRepository reservedPostRepository;
 
     //태워주세요 게시글 등록
     @Transactional
@@ -51,7 +50,6 @@ public class PostService {
     @Transactional
     public List<PostDto> getPassengerPost(int currentPage){
         Pageable limit = PageRequest.of(currentPage,10);
-
 
         return postPassengerRepository.findAll(limit).stream()
                 .map(PostDto::new)
@@ -151,6 +149,10 @@ public class PostService {
         if(user != null){
             Float rate = (user.getRate()+dto.getRate())/2;
             userRepository.updateRate(dto.getHost_email(), rate);
+            Optional<ReservedPostEntity> reservedPostEntity = reservedPostRepository.findReservedPostByIdAndType(dto.getPostId(), dto.getPostType());
+            if(reservedPostEntity.isPresent()){
+                reservedPostRepository.delete(reservedPostEntity.get());
+            }   //PostReviewDto의 postId와 PostType에 해당하는 예약건이 있을경우 삭제 trigger에 의해 complete테이블로 이동
         }
 
         postReviewRepository.save(dto.toEntity());

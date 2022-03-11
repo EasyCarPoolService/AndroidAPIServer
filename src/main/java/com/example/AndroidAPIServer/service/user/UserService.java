@@ -62,8 +62,6 @@ public class UserService {
 
             User user = userRepository.findUserByEmail(loginDto.getEmail()).get();
 
-
-
             AndroidLocalUserDto dto = AndroidLocalUserDto.builder()
                     .nickname(user.getNickname())
                     .email(user.getEmail())

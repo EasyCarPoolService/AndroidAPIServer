@@ -44,4 +44,9 @@ public class ChatRoomEntity {
     @Column(nullable = false)
     private String passengerFcmToken;
 
+    @Column(nullable = false)
+    private String lastChatTime;
+
+    @Column(nullable = true)
+    private String lastMessage;
 }

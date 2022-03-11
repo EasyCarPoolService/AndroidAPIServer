@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -22,6 +24,9 @@ public class RoomDto {
     private String passengerNickname;
     private String driverFcmToken;
     private String passengerFcmToken;
+    private String lastChatTime;
+    private String lastMessage;
+
 
     private Set<WebSocketSession> sessions = new HashSet<>();
     //WebSocketSession은 Spring에서 Websocket Connection이 맺어진 세션
@@ -39,7 +44,17 @@ public class RoomDto {
                 .passengerNickname(passengerNickname)
                 .driverFcmToken(driverFcmToken)
                 .passengerFcmToken(passengerFcmToken)
+                .lastChatTime(lastChatTime)
+                .lastMessage(lastMessage)
                 .build();
+    }
+
+    public void setCurrentTime(){
+        LocalTime now = LocalTime.now();
+        System.out.println(now);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분");
+        String formatedNow = now.format(formatter);
+        this.lastChatTime = formatedNow;
     }
 
     @Builder
@@ -64,6 +79,8 @@ public class RoomDto {
         this.passengerNickname = entity.getPassengerNickname();
         this.driverFcmToken = entity.getDriverFcmToken();
         this.passengerFcmToken = entity.getPassengerFcmToken();
+        this.lastChatTime = entity.getLastChatTime();
+        this.lastMessage = entity.getLastMessage();
     }
 
 

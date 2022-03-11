@@ -40,14 +40,14 @@ public class ChatService {
     public String createRoomDto(RoomDto roomDto){
 
         Optional<ChatRoomEntity> chatRoomEntity = chatRoomRepository.findChatRoomByDto(roomDto.getPostType(), roomDto.getPostId(), roomDto.getDriver(), roomDto.getPassenger());
+
         if(chatRoomEntity.isPresent()){ //roomDto와 일치하는 방이 존재할경우 기존의 방 정보를 리턴
             return chatRoomEntity.get().getRoomid();
 
         }else{  //roomDto와 일치하는 방이 존재하지 않을 경우 새로 save
+            roomDto.setCurrentTime();   //방생성시 현재 시간 지정
             return chatRoomRepository.save(roomDto.toEntity()).getRoomid();
         }
-
-
 
     }
 
@@ -61,13 +61,12 @@ public class ChatService {
         newMessage.setCurrentTime();
         chatMessageRepository.save(newMessage.toEntity()); //채팅 메시지 저장
         template.convertAndSend("/sub/chat/room"+newMessage.getRoomId(), newMessage);
-
+        chatRoomRepository.updateLastChat(newMessage.getRoomId() ,newMessage.getTime(), newMessage.getMessage());
         try{
             fcmService.sendMessageTo(newMessage.getFcmToken(), newMessage.getWriter(), newMessage.getMessage());
         }catch(Exception e){
             System.out.println(e.toString());
         }
-
 
         //firebase code
     }//sendMessage

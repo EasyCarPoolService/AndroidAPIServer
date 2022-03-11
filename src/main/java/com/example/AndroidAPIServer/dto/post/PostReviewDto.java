@@ -14,6 +14,7 @@ import lombok.Setter;
 public class PostReviewDto {
 
     private Long postId;    // reserved_post_entity에서 column삭제를 위해 사용 -> database테이블에 저장X
+    private String postType;    // reserved_post_entity에서 column삭제를 위해 사용 -> database테이블에 저장X
     private String host_email;
     private String host_nickname;
     private String writer_email;

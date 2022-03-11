@@ -5,6 +5,7 @@ import com.example.AndroidAPIServer.domain.entity.ChatRoomEntity;
 
 import com.example.AndroidAPIServer.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,8 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoomEntity, Long> 
                                                 @Param("postId") Long postId,
                                                 @Param("driver") String driver,
                                                 @Param("passenger") String passenger);
-
-
-
+    @Transactional
+    @Modifying
+    @Query("UPDATE ChatRoomEntity c SET c.lastChatTime = :lastChatTime , c.lastMessage = :lastMessage WHERE c.roomid = :roomId")
+    void updateLastChat(@Param("roomId") String roomId, @Param("lastChatTime") String lastChatTime, @Param("lastMessage") String lastMessage);
 }

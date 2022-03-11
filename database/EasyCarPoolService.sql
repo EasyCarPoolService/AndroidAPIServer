@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.27, for macos11.6 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.27, for macos11.6 (x86_64)
 --
 -- Host: localhost    Database: EasyCarPoolService
 -- ------------------------------------------------------
@@ -30,7 +30,7 @@ CREATE TABLE `chat_message_entity` (
   `message` text,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `chat_message_entity` (
 
 LOCK TABLES `chat_message_entity` WRITE;
 /*!40000 ALTER TABLE `chat_message_entity` DISABLE KEYS */;
-INSERT INTO `chat_message_entity` VALUES (22,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 24분'),(23,'ad7bca88-c12c-4166-8873-d07c7f39c019','message','dhkim0405','test','20시 29분'),(24,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(25,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(26,'ad7bca88-c12c-4166-8873-d07c7f39c019','request','dhkim0405','request reservation','20시 29분'),(27,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','hi there','21시 04분'),(28,'b337e389-9757-42df-ac26-4636553dadf6','request','lee','request reservation','21시 04분'),(29,'5290d8d3-606a-4b36-8c0e-46e7a5950337','request','dhkim0405','request reservation','21시 30분'),(30,'b337e389-9757-42df-ac26-4636553dadf6','confirm','dhkim0405','confirm of request','13시 19분'),(31,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','tet','13시 21분'),(32,'b337e389-9757-42df-ac26-4636553dadf6','message','lee','tet','13시 22분'),(33,'b337e389-9757-42df-ac26-4636553dadf6','request','dhkim0405','request reservation','14시 32분'),(34,'b337e389-9757-42df-ac26-4636553dadf6','confirm','lee','confirm of request','14시 33분'),(35,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','request','lee','request reservation','16시 20분'),(36,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','confirm','dhkim0405','confirm of request','16시 20분'),(37,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(38,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(39,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(40,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(41,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(42,'aa8aee9c-2e40-490d-9a0c-c5f11e637f2a','message','lee','ii','16시 37분'),(43,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','j','16시 37분'),(44,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','j','16시 38분'),(45,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','jhiii','16시 38분'),(46,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','jhiii','16시 42분'),(47,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','hj','16시 48분'),(48,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','hj','16시 48분'),(49,'d90d8125-eb0d-4196-9f1e-1faed11e1113','message','lee','fgh','16시 52분'),(50,'1df543b9-e8a8-41f3-9edd-139d21d404ef','message','kim','jeiek','16시 54분'),(51,'1df543b9-e8a8-41f3-9edd-139d21d404ef','message','kim','jeiek','17시 06분'),(52,'b337e389-9757-42df-ac26-4636553dadf6','confirm','lee','confirm of request','18시 23분'),(53,'b337e389-9757-42df-ac26-4636553dadf6','confirm','lee','confirm of request','18시 26분'),(54,'b337e389-9757-42df-ac26-4636553dadf6','confirm','lee','confirm of request','18시 27분'),(55,'1a9bf60f-f861-44f9-a55a-e9309006c722','request','lee','request reservation','16시 10분'),(56,'b8801dfa-c7c6-466b-a697-8d2c1d8ea7ac','message','lee','hellow','16시 12분'),(57,'b8801dfa-c7c6-466b-a697-8d2c1d8ea7ac','request','lee','request reservation','16시 12분'),(58,'ac4d224b-fbd8-49a7-9519-f8c91bab9a54','request','kim','request reservation','16시 14분'),(59,'ac4d224b-fbd8-49a7-9519-f8c91bab9a54','confirm','lee','confirm of request','16시 14분'),(60,'16d0590c-40ab-499e-8783-30b8335f65f0','message','kim','hellow','19시 12분'),(61,'16d0590c-40ab-499e-8783-30b8335f65f0','request','kim','request reservation','19시 12분'),(62,'16d0590c-40ab-499e-8783-30b8335f65f0','confirm','lee','confirm of request','19시 12분');
+INSERT INTO `chat_message_entity` VALUES (87,'16dd126e-780d-4ea8-a38e-ba9dba1cc233','message','lee','test message','15시 15분'),(88,'16dd126e-780d-4ea8-a38e-ba9dba1cc233','message','lee','뭐하냐','15시 15분');
 /*!40000 ALTER TABLE `chat_message_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,8 +61,10 @@ CREATE TABLE `chat_room_entity` (
   `driver_nickname` varchar(100) DEFAULT NULL,
   `driver_fcm_token` varchar(255) DEFAULT NULL,
   `passenger_fcm_token` varchar(255) DEFAULT NULL,
+  `last_chat_time` varchar(100) DEFAULT NULL,
+  `last_message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +73,7 @@ CREATE TABLE `chat_room_entity` (
 
 LOCK TABLES `chat_room_entity` WRITE;
 /*!40000 ALTER TABLE `chat_room_entity` DISABLE KEYS */;
-INSERT INTO `chat_room_entity` VALUES (23,'ac4d224b-fbd8-49a7-9519-f8c91bab9a54','driver',2,'kim','lee','lee','kim','ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO'),(24,'5ee3acb4-a251-4b2d-8225-94d0abf08b3f','passenger',1,'lee','dhkim0405','kim','lees','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO'),(25,'16d0590c-40ab-499e-8783-30b8335f65f0','passenger',4,'kim','lee','lees','kim','ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO');
+INSERT INTO `chat_room_entity` VALUES (47,'16dd126e-780d-4ea8-a38e-ba9dba1cc233','passenger',1,'lee','dhkim0405','kim','lees','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','15시 15분','뭐하냐');
 /*!40000 ALTER TABLE `chat_room_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +91,7 @@ CREATE TABLE `post_complete` (
   `date` varchar(100) DEFAULT NULL,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +100,7 @@ CREATE TABLE `post_complete` (
 
 LOCK TABLES `post_complete` WRITE;
 /*!40000 ALTER TABLE `post_complete` DISABLE KEYS */;
-INSERT INTO `post_complete` VALUES (1,'lee','dhkim0405','2022.02.17','19:2');
+INSERT INTO `post_complete` VALUES (1,'lee','dhkim0405','2022.02.17','19:2'),(2,'kim','lee','2022.02.19','2:2'),(3,'kim','lee','2022.02.25','16:2');
 /*!40000 ALTER TABLE `post_complete` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +195,7 @@ CREATE TABLE `post_review_entity` (
   `title` text,
   `content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,6 +204,7 @@ CREATE TABLE `post_review_entity` (
 
 LOCK TABLES `post_review_entity` WRITE;
 /*!40000 ALTER TABLE `post_review_entity` DISABLE KEYS */;
+INSERT INTO `post_review_entity` VALUES (4,'lee','lee','lee','lees',4,'',''),(5,'lee','lees','lee','lees',5,'good','good'),(6,'lee','lees','lee','lees',5,'good','good'),(7,'lee','lees','lee','lees',4,'good','good'),(8,'lee','lee','lee','lees',4,'test','good');
 /*!40000 ALTER TABLE `post_review_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +227,7 @@ CREATE TABLE `reserved_post_entity` (
   `date` varchar(100) DEFAULT NULL,
   `time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +236,7 @@ CREATE TABLE `reserved_post_entity` (
 
 LOCK TABLES `reserved_post_entity` WRITE;
 /*!40000 ALTER TABLE `reserved_post_entity` DISABLE KEYS */;
-INSERT INTO `reserved_post_entity` VALUES (10,2,'driver','5e6fb98c-13b3-4373-9b7f-4ad5e7e7bbf6','kim','ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ','lee','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','2022.02.25','16:2'),(11,4,'passenger','ce121170-7335-4ec5-97b3-a2251e100d61','kim','ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ','lee','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','2022.02.19','2:2');
+INSERT INTO `reserved_post_entity` VALUES (12,4,'passenger','3c9676c8-da50-4247-9294-d33a940347af','kim','ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ','lee','cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO','2022.02.19','2:2');
 /*!40000 ALTER TABLE `reserved_post_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -315,7 +318,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('kim',NULL,'2022-02-24 07:53:45.172364','kim','kim','$2a$10$xDkcxEUAZpuzvPG4PzY3auphxy34aVMQhulmJekNXknO5LEI89Ary','950405','female',0,1,'ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ',1,'USER'),('lee','2022-02-21 12:03:08.605334','2022-02-21 12:03:08.605334','lee','lees','$2a$10$wNJcgx.r93TRJSzXbIBEvuGSgFeyelJUUORaGs5wQXFfSsrg4slk6','123456','male',3.5,1,'cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO',1,'USER');
+INSERT INTO `user` VALUES ('kim',NULL,'2022-02-24 07:53:45.172364','kim','kim','$2a$10$xDkcxEUAZpuzvPG4PzY3auphxy34aVMQhulmJekNXknO5LEI89Ary','950405','female',0,1,'ccR6xxpDTTuP15bAPcblk-:APA91bFqd0dBNDh8n9ByN7fHvbV7XGOQ3f6K7dTglg7nbYkBVa9dwXGNY3wM0ABw0fHZ8kl16QIE2C4p8a9VtENtZX6BBUVBTcJkaNLzLZBVpfoxGnQNBPTQJE7sBxKyZZ-3c6Gh7aQQ',1,'USER'),('lee','2022-02-21 12:03:08.605334','2022-02-21 12:03:08.605334','lee','lees','$2a$10$wNJcgx.r93TRJSzXbIBEvuGSgFeyelJUUORaGs5wQXFfSsrg4slk6','123456','male',4.17188,1,'cFoV6oduTvOh2CRzXsQvFI:APA91bFNmMq7rz-c9rfX_z95etx0csnM8eGAbuiP7wroZVBuNdJq_lup0lOFBEKS6bNj7AH7dm1bL3VhcoGrx_7UQkGoW95m_9LOi71mFavKUS9UuEr4Y4Yy6TJ6KloDfb3WCILKB1uO',1,'USER');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -328,4 +331,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-08 21:59:03
+-- Dump completed on 2022-03-11 15:16:43
