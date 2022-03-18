@@ -126,6 +126,7 @@ public class PostService {
 
     }//findPostById()
 
+
     public List<PostDto> getPostByDistrict(PostDistrictDto postDistrictDto) {
 
         if(postDistrictDto.getPostType().equals("driver")){ // 타세요
