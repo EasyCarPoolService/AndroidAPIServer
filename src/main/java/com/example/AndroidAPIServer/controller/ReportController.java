@@ -3,6 +3,7 @@ package com.example.AndroidAPIServer.controller;
 
 import com.example.AndroidAPIServer.dto.post.PostPassengerDto;
 import com.example.AndroidAPIServer.dto.report.AccuseDto;
+import com.example.AndroidAPIServer.dto.report.ReportDto;
 import com.example.AndroidAPIServer.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,13 @@ public class ReportController {
     public ResponseEntity<String> accuseUser(@RequestBody AccuseDto dto){
         String message = reportService.accuseUser(dto);
         return ResponseEntity.ok(message);
-    }   //태워주세요 게시글 저장
+    }   //사용자 신고글 저장
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @PostMapping("/reportAdmin")
+    public ResponseEntity<String> reportAdmin(@RequestBody ReportDto dto){
+        String message = reportService.reportAdmin(dto);
+        return ResponseEntity.ok(message);
+    }   //관리자 문의글 저장
+    
 }
