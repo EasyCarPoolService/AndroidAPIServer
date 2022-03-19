@@ -171,6 +171,6 @@ public class UserService {
 
     public String editProfile(String email, String nickname, String gender, String introduce_message) {
         userRepository.updateProfile(email, nickname, gender);
-        return "ok";
+        return "success";
     }//editProfile
 }

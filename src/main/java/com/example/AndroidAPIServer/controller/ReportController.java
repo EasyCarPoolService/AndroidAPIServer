@@ -33,5 +33,5 @@ public class ReportController {
         String message = reportService.reportAdmin(dto);
         return ResponseEntity.ok(message);
     }   //관리자 문의글 저장
-    
+
 }
