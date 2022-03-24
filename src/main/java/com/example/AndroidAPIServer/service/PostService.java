@@ -35,15 +35,14 @@ public class PostService {
     @Transactional
     public String savePassengerPost(PostPassengerDto dto){
         postPassengerRepository.save(dto.toEntity());
-        return "ok";
+        return "success";
     }   //태워주세요 게식글 저장
-
 
     //타세요 게시글 등록
     @Transactional
     public String saveDriverPost(PostDriverDto dto){
         postDriverRepository.save(dto.toEntity());
-        return "ok";
+        return "success";
     }   // 타세요 게시글 저장
 
 
