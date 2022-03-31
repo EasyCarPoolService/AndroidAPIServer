@@ -13,5 +13,8 @@ public class AndroidLocalUserDto {
     private String nickname;
     private String email;
     private String token;
-
+    private String gender;
+    private Float rate;
+    private Boolean driverAuthentication;
+    private String fcmToken;
 }

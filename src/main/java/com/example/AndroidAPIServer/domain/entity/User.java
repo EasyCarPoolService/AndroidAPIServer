@@ -14,11 +14,8 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 public class User extends BaseTimeEntity{
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String name;
 
@@ -36,6 +33,15 @@ public class User extends BaseTimeEntity{
 
     @Column(nullable = false)
     private String gender;
+
+    @Column(nullable = false)
+    private float rate;
+
+    @Column(nullable = false)
+    private Boolean driverAuthentication;
+
+    @Column(nullable = false)
+    private String fcmToken;
 
     @Column(name = "activated")
     private boolean activated;

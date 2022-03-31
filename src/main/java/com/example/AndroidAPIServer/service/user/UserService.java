@@ -18,7 +18,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -38,8 +41,9 @@ public class UserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         joinDto.setPassword(encoder.encode(joinDto.getPassword()));
 
-        return userRepository.save(joinDto.toUserEntity()).getId().toString();
-    }
+
+        return userRepository.save(joinDto.toUserEntity()).getEmail().toString();
+    }//signup
 
     @Transactional
     public ResponseEntity<AndroidLocalUserDto> login(LoginDto loginDto){
@@ -57,10 +61,15 @@ public class UserService {
             httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
             User user = userRepository.findUserByEmail(loginDto.getEmail()).get();
+
             AndroidLocalUserDto dto = AndroidLocalUserDto.builder()
                     .nickname(user.getNickname())
                     .email(user.getEmail())
+                    .gender(user.getGender())
+                    .rate(user.getRate())
                     .token(jwt)
+                    .driverAuthentication(user.getDriverAuthentication())
+                    .fcmToken(user.getFcmToken())
                     .build();
 
             return new ResponseEntity<>(dto, httpHeaders, HttpStatus.OK);
@@ -68,8 +77,10 @@ public class UserService {
             String message = e.getMessage();
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }//login
 
+
+    //token 인중후 응답데이터로 유저 정보 전송 -> Android Client 에서 LocalUserData SingleTon패턴 적용
     @Transactional
     public AndroidLocalUserDto getUserData(String value){
 
@@ -83,9 +94,85 @@ public class UserService {
                     .email(user.getEmail())
                     .nickname(user.getNickname())
                     .token(token)
+                    .gender(user.getGender())
+                    .rate(user.getRate())
+                    .driverAuthentication(user.getDriverAuthentication())
+                    .fcmToken(user.getFcmToken())
                     .build();
         }else{
             return null;
         }
-    }
+    }//getUserData
+
+
+    //check -> store car_info
+    @Transactional
+    public String authDriver(MultipartFile id_image,
+                           MultipartFile car_image,
+                           String email,
+                           String carNumber,
+                           String manufacturer,
+                           String model){
+
+        try {
+            String id_originalFileName = id_image.getOriginalFilename();
+            String id_fileName = id_originalFileName.toString();
+
+            String car_originalFileName = car_image.getOriginalFilename();
+            String car_fileName = car_originalFileName.toString();
+
+            //savePath -> 현재 프로젝트 폴더내 존재하는 files폴더의 경로
+            String id_savePath = System.getProperty("user.dir") + "/userId";
+            String car_savePath = System.getProperty("user.dir") + "/car";
+
+            // /files폴더가 존재하지 않으면 생성
+            if (!new File(id_savePath).exists()) {
+                try{
+                    new File(id_savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+            if (!new File(car_savePath).exists()) {
+                try{
+                    new File(car_savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+            //   현재프로젝트경로/files/filename   ->  filename == (androdi)fileName 변수
+            String id_filePath = id_savePath + "/" + id_fileName;
+            String car_filePath = car_savePath + "/" + car_fileName;
+
+            // 파일 저장
+            id_image.transferTo(new File(id_filePath));
+            car_image.transferTo(new File(car_filePath));
+
+            userRepository.updateDriverAuthentication(email);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return "success";
+    }//authDriver
+
+    public AndroidLocalUserDto getDriverAuth(AndroidLocalUserDto androidLocalUserDto) {
+        User user = userRepository.findUserByEmail(androidLocalUserDto.getEmail()).get();
+
+        if(user != null){
+            return AndroidLocalUserDto.builder()
+                    .driverAuthentication(user.getDriverAuthentication())
+                    .build();
+        }else{
+            return null;
+        }
+    }//getDriverAuth()
+
+    public String editProfile(String email, String nickname, String gender, String introduce_message) {
+        userRepository.updateProfile(email, nickname, gender);
+        return "success";
+    }//editProfile
 }
