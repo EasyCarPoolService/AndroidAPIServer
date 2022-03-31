@@ -37,7 +37,7 @@ public class JoinDto {
                 .gender(gender)
                 .rate(0)    //최초 회원가입 -> User Rate = 0
                 //.driverAuthentication(driverAuthentication)
-                .driverAuthentication(true)
+                .driverAuthentication(false)
                 .fcmToken(fcmToken)
                 .role(Role.USER)
                 .activated(true)

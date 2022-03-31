@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @RestController
@@ -49,6 +50,7 @@ public class UserController {
                 .driverAuthentication(false)
                 .fcmToken(fcmToken)
                 .build();
+
 
         try{
             responseMessage = userService.signup(joinDto);
@@ -108,9 +110,8 @@ public class UserController {
 
 
         // service결과에 따른 출력 메시지 작성하도록 변경! -> Transaction 수정 가능 하도록 변경 필요
-        userService.authDriver(id_image, car_image, email, carNumber, manufacturer, model);
+        String responseMessage = userService.authDriver(id_image, car_image, email, carNumber, manufacturer, model);
 
-        String responseMessage = "ok";
         return ResponseEntity.ok(responseMessage);
     }
 

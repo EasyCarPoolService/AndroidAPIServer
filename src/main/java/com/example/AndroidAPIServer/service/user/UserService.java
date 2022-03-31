@@ -107,7 +107,7 @@ public class UserService {
 
     //check -> store car_info
     @Transactional
-    public void authDriver(MultipartFile id_image,
+    public String authDriver(MultipartFile id_image,
                            MultipartFile car_image,
                            String email,
                            String carNumber,
@@ -155,6 +155,8 @@ public class UserService {
             e.printStackTrace();
         }
 
+
+        return "success";
     }//authDriver
 
     public AndroidLocalUserDto getDriverAuth(AndroidLocalUserDto androidLocalUserDto) {

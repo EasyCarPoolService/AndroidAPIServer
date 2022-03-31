@@ -27,20 +27,21 @@ public class ImageController {
 
         String savePath = System.getProperty("user.dir") + "/profile/"+email+"_profile.jpg";
 
+
         Path path = Paths.get(savePath);
 
         String contentType = Files.probeContentType(path);
 
         FileSystemResource resource = new FileSystemResource(savePath);
 
+        System.out.println("test success!!");
+        System.out.println(savePath);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", contentType);
 
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }//return profile image
-
-
 
     @GetMapping("/car")
     public ResponseEntity<FileSystemResource> getCarImage(@RequestParam String email) throws IOException {
@@ -52,7 +53,6 @@ public class ImageController {
         String contentType = Files.probeContentType(path);
 
         FileSystemResource resource = new FileSystemResource(savePath);
-
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", contentType);
